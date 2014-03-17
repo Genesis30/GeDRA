@@ -106,8 +106,8 @@
             <update></update>
         </ssh-client>
         
-        <os identifier="">
-            <name></name>
+        <os identifier="a1">
+            <name>Algo</name>
             <version></version>
             <update></update>
         </os>
