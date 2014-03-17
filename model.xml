@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml-stylesheet type="text/xsl" href="simple.xsl" ?>  -->
+<system>
+    <hardware>
+        
+        <web-server identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </web-server>
+        
+        <database-server identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </database-server>
+        
+        <voip-server identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </voip-server>
+        
+        <router identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </router>
+        
+        <switch identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </switch>
+        
+        <firewall identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </firewall>
+        
+        <computer identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </computer>
+        
+        <printer identifier="">
+            <firmware></firmware>
+            <specifications></specifications>
+            <specific-software></specific-software>
+            <rating></rating>
+            <comments></comments>
+        </printer>
+    </hardware>
+
+    <software>
+        
+        <office-suite identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </office-suite>
+        
+        <pdf-reader identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </pdf-reader>
+        
+        <email-client identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </email-client>
+        
+        <web-browser identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </web-browser>
+        
+        <vpn-client identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </vpn-client>
+        
+        <ssh-client identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </ssh-client>
+        
+        <os identifier="">
+            <name></name>
+            <version></version>
+            <update></update>
+        </os>
+    </software>
+</system>
