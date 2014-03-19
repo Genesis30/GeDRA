@@ -1,115 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <?xml-stylesheet type="text/xsl" href="simple.xsl" ?>  -->
-<system>
+<system name="prueba1">
     <hardware>
         
-        <web-server identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
-        </web-server>
+        <web_server identifier="h1">
+            <instance name="h11">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
+
+            <instance name="h12">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
+
+        </web_server>
         
-        <database-server identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
-        </database-server>
+        <database_server identifier="h2">
+            <instance name="h21">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
+        </database_server>
         
-        <voip-server identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
-        </voip-server>
+        <voip_server identifier="h3">
+            <instance name="h31">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
+        </voip_server>
         
-        <router identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
+        <router identifier="h4">
+            <instance name="h41">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
         </router>
         
-        <switch identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
+        <switch identifier="h5">
+            <instance name="h51">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
         </switch>
         
-        <firewall identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
+        <firewall identifier="h6">
+            <instance name="h61">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
         </firewall>
         
-        <computer identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
+        <computer identifier="h7">
+            <instance name="h71">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
         </computer>
         
-        <printer identifier="">
-            <firmware></firmware>
-            <specifications></specifications>
-            <specific-software></specific-software>
-            <rating></rating>
-            <comments></comments>
+        <printer identifier="h8">
+            <instance name="h81">
+                <firmware></firmware>
+                <specifications></specifications>
+                <specific-software></specific-software>
+                <rating></rating>
+                <comments></comments>
+            </instance>
         </printer>
     </hardware>
 
     <software>
         
-        <office-suite identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </office-suite>
+        <office_suite identifier="s1">
+            <instance name="s11">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </office_suite>
         
-        <pdf-reader identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </pdf-reader>
+        <pdf_reader identifier="s2">
+            <instance name="s21">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </pdf_reader>
         
-        <email-client identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </email-client>
+        <email_client identifier="s3">
+            <instance name="s31">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </email_client>
         
-        <web-browser identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </web-browser>
+        <web_browser identifier="s4">
+            <instance name="s41">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </web_browser>
         
-        <vpn-client identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </vpn-client>
+        <vpn_client identifier="s5">
+            <instance name="s51">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </vpn_client>
         
-        <ssh-client identifier="">
-            <name></name>
-            <version></version>
-            <update></update>
-        </ssh-client>
+        <ssh_client identifier="s6">
+            <instance name="s61">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </ssh_client>
         
-        <os identifier="a1">
-            <name>Algo</name>
-            <version></version>
-            <update></update>
+        <os identifier="s7">
+            <instance name="s71">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
         </os>
+
+        <ftp_client identifier="s8">
+            <instance name="s81">
+                <name></name>
+                <version></version>
+                <update></update>
+            </instance>
+        </ftp_client>
+
     </software>
 </system>

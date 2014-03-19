@@ -43,28 +43,41 @@ def updateDatabase(data):
 def readFile(model_file):
 	tree = et.parse(model_file)
 	root = tree.getroot()
-
-	dbName = root.attrib.get('name')
-	createDB(dbName)
+	# Dictionary containing the information related to the system
+	system = {}
 	# Building up the system structure
 	for part in root:
-		# Crea HW y SW
-		createPartTable(dbName,part.tag)
+		# PART = HW & SW
+		# Create a dict for every part (HW & SW)
+		system[part.tag] = {}
+
 		for element in part:
-			# Crea tabla de cada elemento
-			print '********'
-			print 'USANDO ELEMENTOS'
-			createElementTable(dbName,element.tag)
+			# ELEMENT = WEB-SERVER, DATABASE-SERVER, ETC
+
+			# Get the identifier of each element of each part
+			element_identifier = element.attrib.get('identifier')
+			# Create a dict for every element
+			system[part.tag][element.tag] = {}
+			system[part.tag][element.tag][element_identifier]={}
+			
 			for instance in element:
-				ident = instance.attrib.get('name')	
-				data = 'algo'
-				addToTable(dbName,element.tag,ident,data)
+				# Use the identifier of each element as the key of the dict, and adding it to a list
+				instance_identifier = instance.attrib.get('name')
+				print instance_identifier
+				# Append the characteristics of each element
+				system[part.tag][element.tag][element_identifier][instance_identifier]={}
+				for charac in instance:
+					system[part.tag][element.tag][element_identifier][instance_identifier].append([charac.tag,charac.text])
+	print system
+			
+	return system
+
 
 # -------------- Program --------------
 
 model_file = validateFile()
-readFile(model_file)
-
+system_dict = readFile(model_file)
+created = updateDatabase(system_dict)
 
 """
 {'hardware': 
