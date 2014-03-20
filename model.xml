@@ -7,7 +7,7 @@
             <instance name="h11">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -15,7 +15,7 @@
             <instance name="h12">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -26,7 +26,7 @@
             <instance name="h21">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -36,7 +36,7 @@
             <instance name="h31">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -46,7 +46,7 @@
             <instance name="h41">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -56,7 +56,7 @@
             <instance name="h51">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+               <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -66,7 +66,7 @@
             <instance name="h61">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -76,7 +76,7 @@
             <instance name="h71">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -86,7 +86,7 @@
             <instance name="h81">
                 <firmware></firmware>
                 <specifications></specifications>
-                <specific-software></specific-software>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -99,7 +99,7 @@
             <instance name="s11">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </office_suite>
         
@@ -107,7 +107,7 @@
             <instance name="s21">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </pdf_reader>
         
@@ -115,7 +115,7 @@
             <instance name="s31">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </email_client>
         
@@ -123,7 +123,7 @@
             <instance name="s41">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </web_browser>
         
@@ -131,7 +131,7 @@
             <instance name="s51">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </vpn_client>
         
@@ -139,7 +139,7 @@
             <instance name="s61">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </ssh_client>
         
@@ -147,7 +147,7 @@
             <instance name="s71">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </os>
 
@@ -155,7 +155,7 @@
             <instance name="s81">
                 <name></name>
                 <version></version>
-                <update></update>
+                <auto_update></auto_update>
             </instance>
         </ftp_client>
 
