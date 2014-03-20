@@ -4,6 +4,12 @@
 import MySQLdb as mdb
 import sys
 
+
+# http://127.0.0.1/phpmyadmin/
+# User: root
+# Pass: mysqlpass
+
+
 #############################
 #	Function "validateFile"
 #		Checks if there is a provided file, and asks for it otherwise. 
@@ -72,18 +78,21 @@ def createElementTable(dbName, tableName, part_name):
 #############################
 def addToTable(dbName, tableName, data, ident, part_name):
 
-	sqlCheckData = 'SELECT * FROM ' + tableName + 'WHERE id="' + ident + '";'
-	#	
-	#	POR COMPLETAR
-	#
-
-	if part_name == 'hardware':
-		sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' (id,firmware,specifications,specific_software,rating,comments) VALUES ('+data+');'
-	else:
-		sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' (id,name,version,auto_update) VALUES ('+data+');'
+	sqlCheckData = 'SELECT * FROM ' + tableName + ' WHERE id="' + ident + '";'
+	cursor.execute(sqlCheckData)
+	row = str(cursor.fetchone())
 	
-	cursor.execute(sqlInsertIntoTable)
-	print 'Successfully inserted data.'
+	if row == 'None':
+		if part_name == 'hardware':
+			sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' VALUES ('+data+');'
+		else:
+			sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' VALUES ('+data+');'
+		
+		cursor.execute(sqlInsertIntoTable)
+
+		print 'Successfully inserted data. Query: %s' % sqlInsertIntoTable
+	else:
+		print 'That instance already exists. Please, use the add option (gedra -a).'
 
 #############################
 #	Function "updateDatabase"
@@ -105,6 +114,13 @@ def updateDatabase():
 	cursor.execute(sqlUseDB)
 	cursor.execute(sqlInsertIntoTable)
 
+#############################
+#	Function "closeDatabase"
+#		Commits & closes the database
+#############################
+def closeDatabase():
+	con.commit()
+	con.close()
 
 #############################
 #	Function "validateData"

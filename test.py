@@ -2,31 +2,47 @@
 
 import os, sys
 
-def validateData(tmp):
-	# String magic
-	campos = tmp.split(',')
-	columnas = ''
-	valores = ''
-	for i in range(len(campos)):
-		h = campos[i].split(':')
-		columnas += ',' + h[0]
-		valores += ',"' + h[1].lstrip() +'"'
+import MySQLdb as mdb
+from PIL import Image
 
-	col = columnas.lstrip(',')	
-	val = valores.lstrip(',')
-	validated = [col,val]
-	return validated
-	# --------------
+im = Image.open("pruebaIm.jpg")
+print 'algo'
+asd = im.getdata()
+print asd
 
-dbName = str(raw_input("Enter the name of the system: "))
-partName = str(raw_input("Is it hardware or software?: "))
-tableName = str(raw_input("Enter the name of the element type: "))
+"""
+def addToTable(dbName, tableName, data, ident, part_name):
 
-tmp = str(raw_input("Enter the data to add ['FieldName1: new_value , FieldName2: new_value']: "))
+	sqlCheckData = 'SELECT * FROM ' + tableName + ' WHERE id="' + ident + '";'
+	cursor.execute(sqlCheckData)
+	row = str(cursor.fetchone())
+	print '+++++++'
+	print row
+	if row == 'None':
+		if part_name == 'hardware':
+			sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' VALUES ('+data+');'
+		else:
+			print 'Metiendo software'
+			sqlInsertIntoTable = 'INSERT INTO ' + tableName + ' VALUES ('+data+');'
+			print '*********'
+			print sqlInsertIntoTable
+			print '*********'
+		
+		cursor.execute(sqlInsertIntoTable)
+		con.commit()
 
-campos = validateData(tmp)
+		print 'Successfully inserted data. Query: %s' % sqlInsertIntoTable
+	else:
+		pass
 
-sqlInsertIntoTable = ' INSERT INTO ' + tableName + ' ('+campos[0]+') VALUES ('+campos[1]+');'
-print sqlInsertIntoTable
 
-# Campo1: a, Campo2: b, Campo3: c
+con = mdb.connect('localhost', 'root', 'mysqlpass')
+cursor = con.cursor()
+
+
+sqlUseDB = 'USE prueba1;'
+
+cursor.execute(sqlUseDB)
+
+addToTable('prueba1','ftp_client','"s81","None","None","None"','s81','software')
+"""

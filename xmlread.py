@@ -34,3 +34,5 @@ def readFile(model_file):
 				# Add info to the previously created table
 				addToTable(dbName,element.tag,data,ident,part.tag)
 		print '"%s" done.' % part.tag
+
+	closeDatabase()

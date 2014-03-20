@@ -14,14 +14,6 @@ model_file = 0
 #		"model_file" stores the path value.
 #############################
 def initialCheck(model_file):
-
-	# gedra   --> check del sistema (prompt?)
-	# gedra -c --create "*.xml"  --> create system from xml file
-	# gedra -u --update  --> force update from database / logs
-	# gedra -i --image  --> get status of the system with an image
-	# gedra -h --help  --> display info
-	# gedra -a --add  --> update the elements in the system
-
 	# If no file is provided, ask for it
 	if len(sys.argv) == 1:
 		sys.exit(0)

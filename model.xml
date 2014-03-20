@@ -2,7 +2,7 @@
 <!-- <?xml-stylesheet type="text/xsl" href="simple.xsl" ?>  -->
 <system name="prueba1">
     <hardware>
-        
+
         <web_server identifier="h1">
             <instance name="h11">
                 <firmware></firmware>
@@ -11,15 +11,6 @@
                 <rating></rating>
                 <comments></comments>
             </instance>
-
-            <instance name="h12">
-                <firmware></firmware>
-                <specifications></specifications>
-                <specific_software></specific_software>
-                <rating></rating>
-                <comments></comments>
-            </instance>
-
         </web_server>
         
         <database_server identifier="h2">
