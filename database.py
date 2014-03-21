@@ -1,14 +1,10 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 import MySQLdb as mdb
-import sys
-
 
 # http://127.0.0.1/phpmyadmin/
 # User: root
 # Pass: mysqlpass
-
 
 #############################
 #	Function "validateFile"

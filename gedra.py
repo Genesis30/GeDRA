@@ -2,7 +2,6 @@
 
 import os, sys
 
-from database import *
 from xmlread import *
 
 

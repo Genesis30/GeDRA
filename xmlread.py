@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os, sys
+
 import xml.etree.ElementTree as et
 import MySQLdb as mdb
 from database import *
@@ -34,5 +34,18 @@ def readFile(model_file):
 				# Add info to the previously created table
 				addToTable(dbName,element.tag,data,ident,part.tag)
 		print '"%s" done.' % part.tag
-
 	closeDatabase()
+
+#############################
+#	Function "modifyFile"
+#		Given data, proceeds to format it correctly and to modify the file
+#		who describes the system. Also updates the system database
+#
+#	@param: data
+#############################
+def modifyFile(data):
+	# Do fancy stuff with the data
+	# once the data is formatted, rebuild the system file
+	# and pass it to readFile() to update the system db.
+	modifiedFile = ''
+	readFile(modifiedFile)

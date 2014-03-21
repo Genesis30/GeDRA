@@ -2,13 +2,17 @@
 
 import os, sys
 
-import MySQLdb as mdb
 from PIL import Image
-
+#
+#	Por defecto se usa el programa 'xv'. 
+#	Si no se tiene instalado se puede usar 
+#	"Eye of Gnome" (por defecto presente en Ubuntu).
+#	Necesario hacer un alias:
+#		"sudo ln -s /usr/bin/eog /usr/bin/xv"
+#
 im = Image.open("pruebaIm.jpg")
-print 'algo'
-asd = im.getdata()
-print asd
+im.show()
+print (im.format, im.size, im.mode)
 
 """
 def addToTable(dbName, tableName, data, ident, part_name):
