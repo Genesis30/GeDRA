@@ -14,5 +14,12 @@ from PIL import Image
 
 
 im = Image.open("pruebaIm.jpg")
-im.show()
-print (im.format, im.size, im.mode)
+im2 = Image.new(im.mode,(800,575),"red")
+print im.mode, im.size, im2.mode, im2.size
+
+x, y = im.size
+im2.paste(im,(0,0))
+
+im2.show()
+
+print "Done"
