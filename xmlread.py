@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import xml.etree.ElementTree as et
-import MySQLdb as mdb
 from database import *
 
 #############################
@@ -15,16 +14,18 @@ def readFile(model_file):
 	tree = et.parse(model_file)
 	root = tree.getroot()
 
+	db = database()
+
 	dbName = root.attrib.get('name')
 
-	createDB(dbName)
+	db.createDB(dbName)
 	# Building up the system structure
 	for part in root:
 		# Create HW & SW
-		createPartTable(dbName,part.tag)
+		db.createPartTable(dbName,part.tag)
 		for element in part:
 			# Create table for each element
-			createElementTable(dbName,element.tag,part.tag)
+			db.createElementTable(dbName,element.tag,part.tag)
 			for instance in element:
 				ident = instance.attrib.get('name')	
 				temp = ''
@@ -32,14 +33,14 @@ def readFile(model_file):
 					temp += ',"' + str(charact.text) +'"'
 				data = '"'+ident+'"'+temp
 				# Add info to the previously created table
-				addToTable(dbName,element.tag,data,ident,part.tag)
+				db.addToTable(dbName,element.tag,data,ident,part.tag)
 		print '"%s" done.' % part.tag
-	closeDatabase()
+	db.closeDatabase()
 
 #############################
 #	Function "modifyFile"
 #		Given data, proceeds to format it correctly and to modify the file
-#		who describes the system. Also updates the system database
+#		who describes the system. Also updates the system database.
 #
 #	@param: data
 #############################
