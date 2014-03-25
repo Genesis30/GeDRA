@@ -113,6 +113,19 @@ class database:
 		cursor.execute(sqlInsertIntoTable)
 
 	#############################
+	#	Function "getFromTable"
+	#		Search the table for the desired "info" given a "query"
+	#############################
+	def getFromTable(self, dbName, tableName, info, query):
+		sqlUseDB = 'USE %s ;' % dbName
+		cursor.execute(sqlUseDB)
+
+		sqlSearchData = 'SELECT %s FROM %s WHERE %s' % (info, tableName, query)
+
+		cursor.execute(sqlUseDB)
+		cursor.execute(sqlSearchData)
+
+	#############################
 	#	Function "closeDatabase"
 	#		Commits & closes the database
 	#############################
