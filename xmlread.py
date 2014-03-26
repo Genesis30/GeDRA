@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import xml.etree.ElementTree as et
-from database import *
+import systemdatabase as systemdb
+
 
 #############################
 #	Function "readFile"
@@ -14,8 +15,7 @@ def readFile(model_file):
 	tree = et.parse(model_file)
 	root = tree.getroot()
 
-	db = database()
-
+	db = systemdb.systemDatabase()
 	dbName = root.attrib.get('name')
 
 	db.createDB(dbName)

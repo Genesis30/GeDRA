@@ -2,19 +2,22 @@
 
 import os, sys
 
-from xmlread import *
+import xmlread as xread
+import remotedatabase as remotedb
+import systemdatabase as systemdb
+import imagehandle as imhandle
 
 
-model_file = 0
 # ---- Functions ----
 #############################
 #	Function "validateFile"
 #		Checks if there is a provided file, and asks for it otherwise. 
 #		"model_file" stores the path value.
 #############################
-def initialCheck(model_file):
+def initialCheck():
 	# If no file is provided, ask for it
 	if len(sys.argv) == 1:
+		usage()
 		sys.exit(0)
 		#model_file = str(raw_input("Enter the name of the xml file descriptor: "))
 	# If a file is provided, check if it is valid
@@ -31,24 +34,24 @@ def initialCheck(model_file):
 					model_file = str(raw_input("The file does not exist. Enter a valid path: "))
 			else:
 				model_file = str(raw_input("Enter the name of the xml file descriptor: "))
+			xread.readFile(model_file)
 
 		if option == '-u' or option == '--update':
-			#update()
-			pass
+			rmdb = remotedb.remoteDatabase()
+			rmdb.update()
 
 		if option == '-a' or option == '--add':
-			#addToSystem()
+			# Necesario aqui?
+			systemdb.addToTable()
 			pass
 
 		if option == '-i' or option == '--image':
-			#createImage()
+			imhandle.createImage()
 			pass
 
 		if option == '-h' or option == '--help':
 			usage()
 			sys.exit(0)
-	return model_file
-
 
 def usage():
     print "\nUSAGE: %s [options]" % sys.argv[0]
@@ -62,7 +65,4 @@ def usage():
 
 # ---- Main ----
 
-while model_file == 0:
-	model_file = initialCheck(model_file)
-
-readFile(model_file)
+initialCheck()

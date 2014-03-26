@@ -1,7 +1,24 @@
 #!/usr/bin/python
 
 import os, sys
+from PIL import Image
 
+def createImage(systemName):
+	imagesPath = str(os.getcwd()) + '/images/'
+	print imagesPath
+
+def loadImage():
+	imagesList = []
+	imagesPath = str(os.getcwd()) + '/images/'
+	
+	for image in os.listdir(imagesPath):
+		temp = imagesPath + image
+		imageName = Image.open(temp)
+		imagesList.append(imageName)
+
+
+loadImage()
+"""
 from PIL import Image
 #
 #	Por defecto se usa el programa 'xv'. 
@@ -14,7 +31,7 @@ im = Image.open("pruebaIm.jpg")
 im.show()
 print (im.format, im.size, im.mode)
 
-"""
+
 def addToTable(dbName, tableName, data, ident, part_name):
 
 	sqlCheckData = 'SELECT * FROM ' + tableName + ' WHERE id="' + ident + '";'

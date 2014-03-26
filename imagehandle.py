@@ -11,8 +11,20 @@ from PIL import Image
 #	Necesario hacer un alias:
 #		"sudo ln -s /usr/bin/eog /usr/bin/xv"
 #
+class imageHandle():
 
+	def __init__(self, systemName):
+		self.systemName = systemName
 
+	def createImage(self, systemName):
+		imagesPath = str(os.getcwd()) + '/images'
+		print imagesPath
+
+	def loadImage(self):
+		imagesPath = str(os.getcwd()) + '/images'
+		print imagesPath
+
+"""
 im = Image.open("pruebaIm.jpg")
 im2 = Image.new(im.mode,(800,575),"red")
 print im.mode, im.size, im2.mode, im2.size
@@ -23,3 +35,5 @@ im2.paste(im,(0,0))
 im2.show()
 
 print "Done"
+
+"""
