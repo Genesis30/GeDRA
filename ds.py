@@ -1,10 +1,22 @@
 #!/usr/bin/python
 
 # 
+def computeRiskDistribution():
+	pass
+def computeRiskState():
+	pass
 
-def calculaMu(): 
-	
+def setParameters():
+	pass
+
+def computeRiskIndex(AK, CK0, BK, priority_IDS, RS0, IDS_name): 
+
+	if IDS_name == "Snort":
+		PIDS0 = 3
+	else:
+		PIDS0 = 1
 	# alpha1 [5,15]  ; alpha2 [10,20]  ; alpha3 [15,30]
+
 
 	if AK <= alpha2:
 		mu11 = (alpha2-AK) / alpha2
@@ -56,9 +68,27 @@ def calculaMu():
 
 	# _______________Mass function________________
 
-	mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
+	# mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
 
-	mass(V) = coso == RiskIndex
+	# mass(V) = coso == RiskIndex
 
+	mk11 = mu11 / mu11 + mu12 + 1 - w1 * PIDS0 
+	mk12 = mu12 / mu11 + mu12 + 1 - w1 * PIDS0 
+
+	mk21 = mu21 / mu21 + mu22 + 1 - w2 * PIDS0 
+	mk22 = mu22 / mu21 + mu22 + 1 - w2 * PIDS0 
+
+	.
+	.
+	.
+	
+
+#	Risk state = Risk Index [+] Risk Dristribution
+#
+#	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
+#					[+] Alert Severity [+] Alert Relevance Score
+#
+#	Risk Distribution = Target Importance
+#
 
 def calculaCosos():
