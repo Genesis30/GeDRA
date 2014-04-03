@@ -1,6 +1,41 @@
 #!/usr/bin/python
 
 import os, sys
+
+"""
+mu = [[0]*2 for i in range(5)]
+w  = [0]*5
+mk = [[0]*2 for i in range(5)]
+"""
+mu = [[0.6,0.3],[0.55,0.40],[0.7,0.1],[0.9,0.05],[0.61,0.38]]
+w = [0,1.3,1.22,0.3,1.4]
+mk = [[0.0]*2 for i in range(5)]
+PIDS0 = 2
+
+print '----------------------'
+print mu
+print '----------------------'
+print w
+print '----------------------'
+print mk
+print '----------------------'
+
+for i in range(5):
+	for j in range(2):
+		if j == 0:
+			
+			mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j+1] + 1 - w[i] * PIDS0)
+			print '*********'
+			print mk[i][j]
+			print '*********'
+		else:
+			
+			mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j-1] + 1 - w[i] * PIDS0)
+
+print mk
+
+
+"""
 from PIL import Image
 
 def createImage(systemName):
@@ -18,7 +53,7 @@ def loadImage():
 
 
 loadImage()
-"""
+
 from PIL import Image
 #
 #	Por defecto se usa el programa 'xv'. 

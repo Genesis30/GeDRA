@@ -1,87 +1,13 @@
 #!/usr/bin/python
 
-# 
+def computeRiskState(*kwargs):
+	computeRiskDistribution()
+	computeRiskIndex(kwargs)
+
 def computeRiskDistribution():
 	pass
-def computeRiskState():
-	pass
 
-def setParameters():
-	pass
-
-def computeRiskIndex(AK, CK0, BK, priority_IDS, RS0, IDS_name): 
-
-	if IDS_name == "Snort":
-		PIDS0 = 3
-	else:
-		PIDS0 = 1
-	# alpha1 [5,15]  ; alpha2 [10,20]  ; alpha3 [15,30]
-
-
-	if AK <= alpha2:
-		mu11 = (alpha2-AK) / alpha2
-	else:
-		mu11 = 0
-
-	if alpha1 >= AK:
-		mu21 = 0
-	elif alpha3 < AK:
-		mu21 = 1	
-	else:
-		mu21 = (AK - alpha1) / (alpha3 - alpha1)
-	
-
-	# CK0 [0,1]
-	mu21 = 1 - CK0
-	mu22 = CK0
-
-	# lambda1 [1,5] ; lambda2 [5,9] ; lambda3 [6,10]
-
-	if BK <= lambda2:
-		mu31 = (lambda2 - BK) / lambda2
-	else:
-		mu31 = 0
-
-	if lambda1 >= BK:
-		mu32 = 0
-	elif lambda3 < BK:
-		mu32 = 1
-	else: 
-		mu32 = (BK - lambda1) / (lambda3 - lambda1)
-
-
-	# phi = 3 ; PR0 = 4 - priority_IDS
-	PR0 = 4 - priority_IDS
-	phi = 3
-
-	if PR0 <= phi:
-		mu41 = (phi - PR0) / phi
-		mu42 = PR0 / phi
-	else:
-		mu41 = 0
-		mu42 = 1
-
-	# RS0 relevance score
-
-	mu51 = 1 - RS0
-	mu52 = RS0
-
-	# _______________Mass function________________
-
-	# mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
-
-	# mass(V) = coso == RiskIndex
-
-	mk11 = mu11 / mu11 + mu12 + 1 - w1 * PIDS0 
-	mk12 = mu12 / mu11 + mu12 + 1 - w1 * PIDS0 
-
-	mk21 = mu21 / mu21 + mu22 + 1 - w2 * PIDS0 
-	mk22 = mu22 / mu21 + mu22 + 1 - w2 * PIDS0 
-
-	.
-	.
-	.
-	
+def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
 
 #	Risk state = Risk Index [+] Risk Dristribution
 #
@@ -91,4 +17,84 @@ def computeRiskIndex(AK, CK0, BK, priority_IDS, RS0, IDS_name):
 #	Risk Distribution = Target Importance
 #
 
-def calculaCosos():
+	if IDS_name == "Snort":
+		PIDS0 = 3
+	else:
+		PIDS0 = 1
+	
+	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
+	mk = calculateMk(mu)
+
+	# _______________Mass function________________
+
+	# mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
+
+	# mass(V) = coso == RiskIndex
+
+
+def calculateMk(mu):
+	mk = [[0]*2 for i in range(5)]
+
+	for i in range(5):
+		for j in range(2):
+			if j == 0:
+				mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j+1] + 1 - w[i] * PIDS0)
+			else:
+				mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j-1] + 1 - w[i] * PIDS0)
+
+	return mk
+
+def calculateMu(AK, CK0, BK, RS0, priority_IDS):
+	# alpha1 [5,15]  ; alpha2 [10,20]  ; alpha3 [15,30]
+	mu = [[0.0]*2 for i in range(5)]
+	w = [0.0]*5
+
+	if AK <= alpha2:
+		mu[0][0] = float((alpha2-AK) / alpha2)
+	else:
+		mu[0][0] = 0.0
+
+	if alpha1 >= AK:
+		mu[0][1] = 0.0
+	elif alpha3 < AK:
+		mu[0][1] = 1.0	
+	else:
+		mu[0][1] = float((AK - alpha1) / (alpha3 - alpha1))
+	
+
+	# CK0 [0,1]
+	mu[1][0] = 1.0 - CK0
+	mu[1][1] = float(CK0)
+
+	# lambda1 [1,5] ; lambda2 [5,9] ; lambda3 [6,10]
+
+	if BK <= lambda2:
+		mu[2][0] = float((lambda2 - BK) / lambda2)
+	else:
+		mu[2][0] = 0.0
+
+	if lambda1 >= BK:
+		mu[2][1] = 0.0
+	elif lambda3 < BK:
+		mu[2][1] = 1.0
+	else: 
+		mu[2][1] = float((BK - lambda1) / (lambda3 - lambda1))
+
+
+	# phi = 3 ; PR0 = 4 - priority_IDS
+	PR0 = 4.0 - priority_IDS
+	phi = 3.0
+
+	if PR0 <= phi:
+		mu[3][0] = float((phi - PR0) / phi)
+		mu[3][1] = float(PR0 / phi)
+	else:
+		mu[3][0] = 0.0
+		mu[3][1] = 1.0
+
+	# RS0 relevance score
+
+	mu[4][0] = 1.0 - RS0
+	mu[4][1] = float(RS0)
+
+	return mu
