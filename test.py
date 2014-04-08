@@ -43,29 +43,13 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
 	mk = calculateMk(mu,PIDS0)
 
-	"""
-	print '************************'
-	print mk[0][1] 
-	print mk[1][1]
-	print mk[2][1]
-	print mk[3][1]
-	print mk[4][1]
-	print '************************'
-
-	print '************************'
-	print mk[0][0] 
-	print mk[1][0]
-	print mk[2][0]
-	print mk[3][0]
-	print mk[4][0]
-	print '************************'
-	"""
+		
+	prob = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
+	tmp = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
 	
-	ponderation = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
-	asd = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
-	
-	result = ponderation/(asd+ponderation)
-	
+	conflict = tmp + prob
+	result = prob/conflict
+	print result
 	return result
 
 
