@@ -1,22 +1,21 @@
 #!/usr/bin/python
 
 def computeRiskState(*kwargs):
-	computeRiskDistribution()
-	computeRiskIndex(kwargs)
+#	Risk state = Risk Index [+] Risk Dristribution
+	riskDistribution = computeRiskDistribution()
+	riskIndex = computeRiskIndex(kwargs)
+	riskState = riskDistribution + riskIndex
+	return riskState
 
 def computeRiskDistribution():
+#	Risk Distribution = Target Importance
+#
 	pass
 
 def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
-
-#	Risk state = Risk Index [+] Risk Dristribution
-#
 #	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
 #					[+] Alert Severity [+] Alert Relevance Score
 #
-#	Risk Distribution = Target Importance
-#
-
 	if IDS_name == "Snort":
 		PIDS0 = 3
 	else:
@@ -25,7 +24,7 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
 	mk = calculateMk(mu)
 
-	# _______________Mass function________________
+	#_______________Mass function________________
 
 	# mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
 
@@ -43,6 +42,20 @@ def calculateMk(mu):
 				mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j-1] + 1 - w[i] * PIDS0)
 
 	return mk
+
+#############################
+#	Function "calculateMu"
+#		Given the parameters of the system, it will return the factors of risk/no risk
+#
+#		AK : alert amount of an alert thread (not only attack strength but also attack confidence).
+#
+#		CK0 : updated alert confidence [0,1] ; probability that an abnormal activity is a true attack. 
+#
+#		BK : attack confident situation & severity of the corresponding intrusion.
+#
+#		RS0 : likelihood of a sucessful intrusion. Updated alert in an alert thread. [0,1]
+#
+#############################
 
 def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 	# alpha1 [5,15]  ; alpha2 [10,20]  ; alpha3 [15,30]
