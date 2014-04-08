@@ -2,15 +2,12 @@
 
 import os, sys
 
-def computeRiskState():
+def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 #	Risk state = Risk Index [+] Risk Dristribution
-	#priority = leePrioridadElemento()
-	priority = 4
-	#riskIndex = computeRiskIndex(kwargs)
-	riskIndex = computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "Snort")
-	riskDistribution = computeRiskDistribution(priority,riskIndex)
-	riskState = riskDistribution
-	print riskState
+		
+	riskIndex = computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
+	riskState = computeRiskDistribution(priority,riskIndex)
+	print riskState 
 	return riskState
 
 def computeRiskDistribution(priority, riskIndex):
@@ -45,6 +42,8 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 	
 	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
 	mk = calculateMk(mu,PIDS0)
+
+	"""
 	print '************************'
 	print mk[0][1] 
 	print mk[1][1]
@@ -60,13 +59,13 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 	print mk[3][0]
 	print mk[4][0]
 	print '************************'
-
+	"""
+	
 	ponderation = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
 	asd = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
-	print ponderation
-	print asd
+	
 	result = ponderation/(asd+ponderation)
-	print result
+	
 	return result
 
 
@@ -165,73 +164,11 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 #computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
 #computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "Snort")
 
-computeRiskState()
+computeRiskState(4,12.0, 0.6, 6.0, 0.7, 3, "Snort")
 
+computeRiskState(4,15.0, 0.6, 10.0, 0.8, 3, "Snort")
 
-
-
-#############################
-#	Function "calculateMu"
-#		Given the parameters of the system, it will return the factors of risk/no risk
-#
-#		AK : alert amount of an alert thread (not only attack strength but also attack confidence).
-#
-#		CK0 : updated alert confidence [0,1] ; probability that an abnormal activity is a true attack. 
-#
-#		BK : attack confident situation & severity of the corresponding intrusion.
-#
-#		RS0 : likelihood of a sucessful intrusion. Updated alert in an alert thread. [0,1]
-#
-#############################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "Snort")
 
 
 
