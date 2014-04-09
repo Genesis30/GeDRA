@@ -1,0 +1,52 @@
+Attempted Administrator Privilege Gain
+Attempted User Privilege Gain
+SCORE! Get the lotion!
+Potential Corporate Privacy Violation
+Executable code was detected
+Successful Administrator Priviledge Gain
+Successful User Priviledge Gain
+A Network Trojan was Detected
+Unsuccessful User Privilege Gain
+Web Application Attack
+Attempted Denial of Service
+Attempted Information Leak
+Potentially Bad Traffic
+Attempt to login by a default username and password
+Detection of a Denial of Service Attack
+Misc Attack
+Detection of a non-standard protocol or event
+Decode of an RPC query
+Denial of Service
+Large Scale Information Leak
+Information Leak
+A suspicious filename was detected
+An attempted login using a suspicious user-name was detected
+A system call was detected
+A client was using an unusual port
+Access to a potentially vulnerable web application
+Generic ICMP event
+Misc activity
+Detection of a Network Scan
+Not Suspicious Traffic
+Generic Protocol Command Decode
+A suspicious string was detected
+Unknown Traffic= -
+A TCP connection was detected= -
+
+
+
+---------------------
+
+Hola Carlos,
+
+el snort envia los paquetes en formato syslog de la siguiente manera:
+
+<38>snort: [1:100852:1] UDP FLOOD. [Classification: A Network Trojan was detected] [Priority: 2]: {UDP} 172.16.206.128:15874 -> 10.0.0.100:111
+
+Envía información sobre el identificador del snort (1:100852:1), cómo clasifica el snort el ataque en función de sus tablas ("A network...."), la prioridad asignada al ataque, el protocolo utilizado, ip origen:puerto origen, ipDestino:puerto destino.
+
+
+Adjunto también la clasificación de snort de los tipos de ataque.
+
+UN saludo
+Veronica

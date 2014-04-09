@@ -5,7 +5,6 @@ def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 		
 	riskIndex = computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
 	riskState = computeRiskDistribution(priority,riskIndex)
-	print riskState 
 	return riskState
 
 def computeRiskDistribution(priority, riskIndex):
@@ -16,18 +15,25 @@ def computeRiskDistribution(priority, riskIndex):
 
 	if priority <= 3:
 		if riskIndex <= 0.5:
+			print 'Low risk: %s' % riskIndex
 			return 0.3
 		elif riskIndex <=0.8:
+			print 'Medium risk: %s' % riskIndex
 			return 0.6
 		else:
+			print 'High risk: %s' % riskIndex
 			return 1.0
 	else:
 		if riskIndex <= 0.4:
+			print 'Low risk: %s' % riskIndex
 			return 0.3
 		elif riskIndex <=0.7:
+			print 'Medium risk: %s' % riskIndex
 			return 0.6
 		else:
+			print 'High risk: %s' % riskIndex
 			return 1.0
+
 
 def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
 #	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
@@ -141,6 +147,13 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 	mu[4][1] = float(RS0)
 
 	return mu
+
+def calculateParams(params):
+	pass
+
+def calculateRisk(data):
+	risk = computeRiskState(data[0], data[1], data[2], data[3], data[4], data[5])
+	return risk
 
 """
 #computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
