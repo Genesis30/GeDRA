@@ -6,9 +6,9 @@
     
 - OPTIONS:
    * **-c --create 'xml.file'**: build a new system defined in the provided file.
-   * **-u --update**: force the system to update.
+   * **-u --update**: force the system to update. (To be implemented)
    * **-a --add 'System'**: add elements to previously created system.
-   * **-i --image**: get status of the system with an image.
+   * **-i --image**: get status of the system with an image. (To be implemented)
    * **-h --help**: display this information.
 
 ###Contact 
