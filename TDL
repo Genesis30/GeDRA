@@ -1,5 +1,6 @@
 TDL
 
 - Modulo corriendo en background
-- Lectura syslog/DB de incidencias
+- Lectura syslog/DB de incidencias 
 - Cálculo de parámetros entrada DS
+- Reglas de decision objetivo
