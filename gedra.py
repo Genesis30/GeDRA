@@ -45,11 +45,13 @@ def initialCheck():
 
 def usage():
     print "\nUSAGE: %s [options]" % sys.argv[0]
-    print "Without options      	  	run the module in background."
+    print "Without options      	  	run the module in background.\n"
     print "OPTIONS:"
     print "-c --create 'xml.file'  	build a new system defined in the provided file."
     print "-a --add 'System'	   	add elements to previously created system."
+    print "-s --system			snapshot of the global state of the system."
     print "-h --help           		display this information."
+    print
 
 # ---- Main ----
 

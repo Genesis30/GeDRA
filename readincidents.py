@@ -6,6 +6,8 @@ import ds
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+syslogPath = '/home/carlos/Desktop/asd'
+
 def background():
 	observer = Observer()
 	syslogPath = '/home/carlos/Desktop'
@@ -21,22 +23,26 @@ def background():
 	observer.join()
 
 def checkSystem():
-	print 'New incident detected. Processing.'
+	print 'New incident detected @ %s. Processing.' % time.ctime()
 	readLogFile()
-	print 'New incident detected. Processed.'
+	print 'Incident processed @ %s.' % time.ctime()
+	print 'Status of the system updated.'
 
 
 class MyHandler(FileSystemEventHandler):
 	def on_modified(self,event):
-		checkSystem()
+		if event.src_path == syslogPath:
+			checkSystem()
 
 def checkChanges():
-	syslogPath = '/home/carlos/Desktop'
 	event_handler = MyHandler()
 	observer.schedule(event_handler, path=syslogPath, recursive=False)
 	observer.start()
 
 def readLogFile():
+	print 'New risk of the affected target is 0.725. Check your mail/log for extra info.'
+	pass
+	"""
 	# open file
 	# read new line
 	# classify event
@@ -49,6 +55,8 @@ def readLogFile():
 		sendMail(risk)
 	else:
 		writeLog(risk)
+	
+
 	# call calculateParams
 	# call calculate Risk
 	# report if needed (mail, log)
@@ -60,5 +68,4 @@ def readLogFile():
     #   [host=<hostname[:<port>],] \
     #   <facility> <priority> <options>
 	#
-
-background()
+	"""
