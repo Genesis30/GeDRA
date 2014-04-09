@@ -1,16 +1,33 @@
 #!/usr/bin/python
 
-def computeRiskState(*kwargs):
+def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 #	Risk state = Risk Index [+] Risk Dristribution
-	riskDistribution = computeRiskDistribution()
-	riskIndex = computeRiskIndex(kwargs)
-	riskState = riskDistribution + riskIndex
+		
+	riskIndex = computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
+	riskState = computeRiskDistribution(priority,riskIndex)
+	print riskState 
 	return riskState
 
-def computeRiskDistribution():
+def computeRiskDistribution(priority, riskIndex):
 #	Risk Distribution = Target Importance
 #
-	pass
+#	medium = [0,0.5][0.5,0.8][0.8,1.0]
+#	high = [0,0.4][0.4,0.7][0.7,1.0]
+
+	if priority <= 3:
+		if riskIndex <= 0.5:
+			return 0.3
+		elif riskIndex <=0.8:
+			return 0.6
+		else:
+			return 1.0
+	else:
+		if riskIndex <= 0.4:
+			return 0.3
+		elif riskIndex <=0.7:
+			return 0.6
+		else:
+			return 1.0
 
 def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
 #	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
@@ -22,17 +39,21 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 		PIDS0 = 1
 	
 	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
-	mk = calculateMk(mu)
+	mk = calculateMk(mu,PIDS0)
 
-	#_______________Mass function________________
-
-	# mass_q(Vj) = (mu qj) / (sum [i=1,2] muq i) + 1 - wq*PIDS0
-
-	# mass(V) = coso == RiskIndex
+		
+	prob = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
+	tmp = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
+	
+	conflict = tmp + prob
+	result = prob/conflict
+	print result
+	return result
 
 
 def calculateMk(mu):
 	mk = [[0]*2 for i in range(5)]
+	w = [0,0.1,0.2,0.3,0.4]
 
 	for i in range(5):
 		for j in range(2):
@@ -60,8 +81,12 @@ def calculateMk(mu):
 def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 	# alpha1 [5,15]  ; alpha2 [10,20]  ; alpha3 [15,30]
 	mu = [[0.0]*2 for i in range(5)]
-	w = [0.0]*5
-
+	
+	#----------------
+	alpha1 = 5
+	alpha2 = 10
+	alpha3 = 15
+	#----------------
 	if AK <= alpha2:
 		mu[0][0] = float((alpha2-AK) / alpha2)
 	else:
@@ -81,6 +106,11 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 
 	# lambda1 [1,5] ; lambda2 [5,9] ; lambda3 [6,10]
 
+	#--------------
+	lambda1 = 1
+	lambda2 = 5
+	lambda3 = 6
+	#--------------
 	if BK <= lambda2:
 		mu[2][0] = float((lambda2 - BK) / lambda2)
 	else:
@@ -111,3 +141,14 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 	mu[4][1] = float(RS0)
 
 	return mu
+
+"""
+#computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
+#computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "Snort")
+
+computeRiskState(4,12.0, 0.6, 6.0, 0.7, 3, "Snort")
+
+computeRiskState(4,15.0, 0.6, 10.0, 0.8, 3, "Snort")
+
+computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "Snort")
+"""

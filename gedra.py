@@ -3,9 +3,8 @@
 import os, sys
 
 import xmlread as xread
-import remotedatabase as remotedb
 import systemdatabase as systemdb
-import imagehandle as imhandle
+import readincidents as read
 
 
 # ---- Functions ----
@@ -17,9 +16,8 @@ import imagehandle as imhandle
 def initialCheck():
 	# If no file is provided, ask for it
 	if len(sys.argv) == 1:
-		usage()
-		sys.exit(0)
-		#model_file = str(raw_input("Enter the name of the xml file descriptor: "))
+		read.background()
+
 	# If a file is provided, check if it is valid
 	elif len(sys.argv) >= 2:
 		option = sys.argv[1]
@@ -36,17 +34,9 @@ def initialCheck():
 				model_file = str(raw_input("Enter the name of the xml file descriptor: "))
 			xread.readFile(model_file)
 
-		if option == '-u' or option == '--update':
-			rmdb = remotedb.remoteDatabase()
-			rmdb.update()
-
 		if option == '-a' or option == '--add':
 			# Necesario aqui?
 			systemdb.addToTable()
-			pass
-
-		if option == '-i' or option == '--image':
-			imhandle.createImage()
 			pass
 
 		if option == '-h' or option == '--help':
@@ -58,9 +48,7 @@ def usage():
     print "Without options      	  	run the module in background."
     print "OPTIONS:"
     print "-c --create 'xml.file'  	build a new system defined in the provided file."
-    print "-u --update			force the system to update."
     print "-a --add 'System'	   	add elements to previously created system."
-    print "-i --image              	get status of the system with an image."  
     print "-h --help           		display this information."
 
 # ---- Main ----

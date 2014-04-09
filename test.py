@@ -2,6 +2,7 @@
 
 import os, sys
 
+"""
 def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 #	Risk state = Risk Index [+] Risk Dristribution
 		
@@ -156,7 +157,7 @@ computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "Snort")
 
 
 
-"""
+
 mu = [[0]*2 for i in range(5)]
 w  = [0]*5
 mk = [[0]*2 for i in range(5)]
