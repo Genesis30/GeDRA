@@ -1,6 +1,5 @@
 TDL
 
 - Modulo corriendo en background
-- Imagen del sistema
 - Lectura syslog/DB de incidencias
 - Cálculo de parámetros entrada DS
