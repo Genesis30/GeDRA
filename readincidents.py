@@ -46,7 +46,7 @@ def readLogFile():
 	# open file
 	# read new line
 	# classify event
-	params = rf.read()
+	params = rf.parseInfo()
 
 	data = ds.calculateParams(params)
 	risk = ds.calculateRisk(data)
