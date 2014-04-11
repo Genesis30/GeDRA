@@ -55,7 +55,6 @@ def readLogFile():
 		sendMail(risk)
 	else:
 		writeLog(risk)
-	
 
 	# call calculateParams
 	# call calculate Risk
