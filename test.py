@@ -2,6 +2,49 @@
 
 import os, sys
 
+input_string = '<38>snort: [1:100852:1] UPD FLOOD. [Classification: A Network Trojan was detected] [Priority: 2]: {UDP} 172.16.20.128:15874 -> 10.0.0.100:111'
+
+splitBlank = input_string.split(None,2)
+
+temp1 = splitBlank[2]
+
+temp2 = temp1.split('[')
+wat = temp2[0].strip()
+temp21 = temp2[1].rstrip()
+classification = temp21.rstrip(']')
+temp3 = temp2[2]
+temp4 = temp3.split(']')
+priority = temp4[0].strip()
+temp5 = temp4[1].lstrip(':')
+temp6 = temp5.lstrip()
+temp7 = temp6.split()
+temp7.pop(2)
+protocol = temp7[0]
+direccionIpOrigen = temp7[1]
+direccionIpDestino = temp7[2]
+
+print '********'
+print wat
+print classification
+print priority
+print protocol
+print direccionIpOrigen
+print direccionIpDestino
+print '********'
+
+
+"""
+print '********'
+for i in splitTwoDot:
+	print i
+print '********'
+
+
+print '********'
+for i in splitCorchete:
+	print i
+print '********'
+"""
 """
 def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 #	Risk state = Risk Index [+] Risk Dristribution
