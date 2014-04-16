@@ -2,6 +2,14 @@
 
 import os, sys
 
+
+"""
+params = ['' for i in range(7)]
+params[0], params[1], params[2] = 1,2,3
+
+print params
+
+
 input_string = '<38>snort: [1:100852:1] UPD FLOOD. [Classification: A Network Trojan was detected] [Priority: 2]: {UDP} 172.16.20.128:15874 -> 10.0.0.100:111'
 
 splitBlank = input_string.split(None,2)
@@ -33,7 +41,7 @@ print direccionIpDestino
 print '********'
 
 
-"""
+
 print '********'
 for i in splitTwoDot:
 	print i
