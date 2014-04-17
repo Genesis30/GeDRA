@@ -2,8 +2,22 @@
 
 import os, sys
 
+# attack_name: affected_element
+attack = {"Attempted Administrator Privilege Gain": "pc",
+	"Attempted User Privilege Gain": "router",
+}
+
+def zero():
+	print 'Algo'
+
+print attack['Attempted User Privilege Gain']
 
 """
+Attempted Administrator Privilege Gain
+Attempted User Privilege Gain
+
+
+
 params = ['' for i in range(7)]
 params[0], params[1], params[2] = 1,2,3
 

@@ -20,8 +20,8 @@ def formatLine(line, incidentTime):
 	# Split the desired info
 	temp2 = temp1.split('[')
 
-	# Wat?
-	var1 = temp2[0].strip()
+	# Attack step?
+	step = temp2[0].strip()
 
 	# Classification
 	temp21 = temp2[1].rstrip()
@@ -46,7 +46,7 @@ def formatLine(line, incidentTime):
 	#printThings()
 	#print '********'
 	#print 'Incident report: '
-	#print var1
+	#print step
 	#print classification
 	#print priority
 	#print protocol
@@ -55,5 +55,5 @@ def formatLine(line, incidentTime):
 	#print '********'
 
 	params = ['' for i in range(7)]
-	params[0],params[1],params[2],params[3],params[4],params[5],params[6] = incidentTime, var1, classification, priority, protocol, sourceIp, destinationIp
+	params[0],params[1],params[2],params[3],params[4],params[5],params[6] = incidentTime, step, classification, priority, protocol, sourceIp, destinationIp
 	return params

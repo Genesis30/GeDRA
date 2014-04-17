@@ -1,11 +1,38 @@
 #!/usr/bin/python
 
+def calculateRisk(data):
+	risk = computeRiskState(data[0], data[1], data[2], data[3], data[4], data[5])
+	return risk
+
 def computeRiskState(priority,AK, CK0, BK, RS0, priority_IDS, IDS_name):
 #	Risk state = Risk Index [+] Risk Dristribution
 		
 	riskIndex = computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
 	riskState = computeRiskDistribution(priority,riskIndex)
 	return riskState
+
+
+def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
+#	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
+#					[+] Alert Severity [+] Alert Relevance Score
+#
+	if IDS_name == "Snort":
+		PIDS0 = 3
+	else:
+		PIDS0 = 1
+	
+	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
+	mk = calculateMk(mu,PIDS0)
+
+		
+	prob = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
+	tmp = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
+	
+	conflict = tmp + prob
+	result = prob/conflict
+	print result
+	return result
+
 
 def computeRiskDistribution(priority, riskIndex):
 #	Risk Distribution = Target Importance
@@ -35,28 +62,6 @@ def computeRiskDistribution(priority, riskIndex):
 			return 1.0
 
 
-def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name): 
-#	Risk Index = Alert Amount [+] Alert Confidence [+] Alter Type Number
-#					[+] Alert Severity [+] Alert Relevance Score
-#
-	if IDS_name == "Snort":
-		PIDS0 = 3
-	else:
-		PIDS0 = 1
-	
-	mu = calculateMu(AK, CK0, BK, RS0, priority_IDS)
-	mk = calculateMk(mu,PIDS0)
-
-		
-	prob = mk[0][1] + mk[1][1] + mk[2][1] + mk[3][1] + mk[4][1]
-	tmp = mk[0][0] + mk[1][0] + mk[2][0] + mk[3][0] + mk[4][0]
-	
-	conflict = tmp + prob
-	result = prob/conflict
-	print result
-	return result
-
-
 def calculateMk(mu):
 	mk = [[0]*2 for i in range(5)]
 	w = [0,0.1,0.2,0.3,0.4]
@@ -69,6 +74,7 @@ def calculateMk(mu):
 				mk[i][j] = mu[i][j] / ( mu[i][j] + mu[i][j-1] + 1 - w[i] * PIDS0)
 
 	return mk
+
 
 #############################
 #	Function "calculateMu"
@@ -148,12 +154,12 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 
 	return mu
 
-def calculateParams(params):
-	pass
-
-def calculateRisk(data):
-	risk = computeRiskState(data[0], data[1], data[2], data[3], data[4], data[5])
-	return risk
+def calculateParams(attack_step, attack_name, affected_element, affected_element_ip):
+	
+	return data
+	"""
+	data[i] = AK, CK0, BK, RS0, priority_IDS, IDS_name
+	"""
 
 """
 #computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
