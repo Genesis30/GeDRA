@@ -2,8 +2,8 @@
 
 import os, sys
 
-#import xmlread as xread
-#import systemdatabase as systemdb
+import xmlread as xread
+import systemdatabase as systemdb
 import readincidents as read
 
 

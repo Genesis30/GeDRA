@@ -6,9 +6,26 @@ import ds
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+#############################
+# Monitoring the syslog directory & file
+#############################
 directoryPath = '/home/genesis/Desktop/'
 syslogPath = '/home/genesis/Desktop/asd'
 
+#############################
+#	Class "MyHandler"
+#		Modified event handler. When it detects a change in syslog file, proceeds to process it. 
+#############################
+class MyHandler(FileSystemEventHandler):
+	def on_modified(self,event):
+		if event.src_path == syslogPath:
+			checkSystem()
+
+#############################
+#	Function "background"
+#		Creates an observer who checks the desired directory every second. 
+#		Stopped by a Keyboard interrupt.
+#############################
 def background():
 	observer = Observer()
 	event_handler = MyHandler()
@@ -22,39 +39,43 @@ def background():
 		observer.stop()
 	observer.join()
 
+#############################
+
+
+#############################
+#	Function "checkSystem"
+#		When a change in the syslog file is detected, this function is called.
+#		Calls rf.parseInfo and provides it the current time. This function returns
+#		a data structure, that is passed over to be evaluated.
+#############################
 def checkSystem():
-	print 'New incident detected @ %s. Processing.' % time.ctime()
-	params = readLogFile(time.ctime())
-	evaluateIncident(params)
-	print 'Incident processed @ %s.' % time.ctime()
-	print 'Status of the system updated.'
+	params = rf.parseInfo(time.ctime())
+	if 'snort' in params[7]:
+		print 'New incident detected @ %s. Processing.' % time.ctime()
+		evaluateIncident(params)
+		print 'Incident processed @ %s.' % time.ctime()
+		print 'Status of the system updated.'
 
-
-class MyHandler(FileSystemEventHandler):
-	def on_modified(self,event):
-		if event.src_path == syslogPath:
-			checkSystem()
-
-def readLogFile(incidentTime):
-	
-	params = rf.parseInfo(incidentTime)
-	return params
-
+#############################
+#	Function "evaluateIncident"
+#		Given a data structure "params", it extracts the relevant information and calls
+#		the "ds" module to get the correct parameters to evaluate risk.
+#############################
 def evaluateIncident(params):
-	print params
-	
-	attack_step = params[1]
 	attack_name = params[2]
-
 	affected_element = decideAffectedElement(attack_name)
-	affected_element_ip = params[6]
 
-	data = ds.calculateParams(attack_step,attack_name,affected_element,affected_element_ip)
+	data = ds.calculateParams(params,affected_element)
 	risk = ds.calculateRisk(data)
 	"""
 	data[i] = AK, CK0, BK, RS0, priority_IDS, IDS_name
 	"""
 
+#############################
+#	Function "decideAffectedElement"
+#		Provided an attack name, it compares with a defined dictionary and returns
+#		the affected parts of the system.
+#############################
 def decideAffectedElement(attack_name):
 	
 	attack_dict = {"Attempted Administrator Privilege Gain": '',
