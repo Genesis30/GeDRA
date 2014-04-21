@@ -3,6 +3,7 @@
 import os, sys, time
 import readfile as rf
 import ds
+import systemdatabase as systemdb
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -63,7 +64,8 @@ def checkSystem():
 #############################
 def evaluateIncident(params):
 	attack_name = params[2]
-	affected_element = decideAffectedElement(attack_name)
+	affected_element_ip = params[6]
+	affected_element = decideAffectedElement(attack_name, affected_element_ip)
 
 	data = ds.calculateParams(params,affected_element)
 	risk = ds.calculateRisk(data)
@@ -76,8 +78,8 @@ def evaluateIncident(params):
 #		Provided an attack name, it compares with a defined dictionary and returns
 #		the affected parts of the system.
 #############################
-def decideAffectedElement(attack_name):
-	
+def decideAffectedElement(attack_name, affected_element_ip):
+
 	attack_dict = {"Attempted Administrator Privilege Gain": '',
 					"Attempted User Privilege Gain": '',
 					"SCORE! Get the lotion!": '',
@@ -114,4 +116,14 @@ def decideAffectedElement(attack_name):
 					"A TCP connection was detected= -": '',
 	}
 
-	return attack_dict[attack_name]
+	affected_element = rf.parseSystemFile(affected_element_ip)
+
+	#####
+	#
+	db = systemdb.systemDatabase()
+	affected_element_relevance = db.getFromTable('prueba1',affected_element,'rating','ip="'+affected_element_ip+'"')
+	#
+	#####	
+
+	info = affected_element + ' ' + affected_element_relevance
+	return info

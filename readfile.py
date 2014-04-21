@@ -2,6 +2,7 @@
 
 #logPath = '/var/log/syslog'
 syslogPath = '/home/genesis/Desktop/asd'
+gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
 
 #############################
 #	Function "parseInfo"
@@ -63,3 +64,21 @@ def formatLine(line, incidentTime):
 		# Data structure to be returned
 		params[0],params[1],params[2],params[3],params[4],params[5],params[6], params[7] = incidentTime, step, classification, priority, protocol, sourceIp, destinationIp, isIds
 		return params
+
+
+#############################
+#	Function "parseSystemFile"
+#		Open the system file, retrieve the desired info
+#############################
+def parseSystemFile(affected_element_ip):
+	with open(gedraPath, 'r') as model:
+		temp = model.readlines()
+		i = 0
+		for line in temp:
+			if affected_element_ip in line:
+				data = temp[i-3]
+			i+=1
+		temp = data.split(None)
+		temp2 = temp[0]
+		element = temp2.lstrip('<')
+		return element

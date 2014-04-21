@@ -2,6 +2,53 @@
 
 import os, sys
 
+
+
+gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
+
+def parseSystemFile(affected_element_ip):
+	with open(gedraPath, 'r') as model:
+		temp = model.readlines()
+		i = 0
+		for line in temp:
+			if affected_element_ip in line:
+				data = temp[i-3]
+			i+=1
+		temp = data.split(None)
+		temp2 = temp[0]
+		element = temp2.lstrip('<')
+		return element
+
+asd = parseSystemFile('192.168.1.1')
+print asd
+
+
+
+
+
+"""
+import MySQLdb as mdb
+con = mdb.connect('localhost', 'root', 'root')
+cursor = con.cursor()
+
+def getFromTable(dbName, tableName, info, query):
+		sqlUseDB = 'USE %s ;' % dbName
+		cursor.execute(sqlUseDB)
+
+		sqlSearchData = 'SELECT %s FROM %s WHERE %s' % (info, tableName, query)
+
+		cursor.execute(sqlUseDB)
+		cursor.execute(sqlSearchData)
+		row = str(cursor.fetchone())
+		print row
+		return row
+
+asd = getFromTable('prueba1','web_server','specifications','id="h11"')
+print asd
+
+
+
+
 # attack_name: affected_element
 attack = {"Attempted Administrator Privilege Gain": "pc",
 	"Attempted User Privilege Gain": "router",
@@ -12,7 +59,7 @@ def zero():
 
 print attack['Attempted User Privilege Gain']
 
-"""
+
 Attempted Administrator Privilege Gain
 Attempted User Privilege Gain
 

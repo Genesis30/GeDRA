@@ -6,9 +6,9 @@
         <web_server identifier="h1">
             <instance name="h11">
                 <firmware></firmware>
-                <specifications></specifications>
+                <specifications>192.168.1.1</specifications>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>5</rating>
                 <comments></comments>
             </instance>
         </web_server>
