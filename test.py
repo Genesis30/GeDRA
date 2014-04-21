@@ -1,7 +1,116 @@
 #!/usr/bin/python
 
 import os, sys
+import MySQLdb as mdb
 
+
+def formatLine(line, incidentTime):
+	# Data structure to retrieve info
+	params = ['' for i in range(8)]
+	# Remove unnecessary info & get only relevant info
+	splitWhite = line.split(None,2)
+	isIds = splitWhite[0]
+	if not 'snort' in isIds:
+		params[7] = 'notRelevant'
+		return params
+	else:
+		temp1 = splitWhite[2]
+
+		# Split the desired info
+		temp2 = temp1.split('[')
+
+		# Attack step?
+		step = temp2[0].strip()
+
+		# Classification
+		temp21 = temp2[1].rstrip()
+		temp22 = temp21.rstrip(']')
+		temp23 = temp22.split(None,1)
+		classification = temp23[1]
+		# Priority
+		temp3 = temp2[2]
+		temp4 = temp3.split(']')
+		priority = temp4[0].strip()
+
+		# Protocol & ip directions
+		temp5 = temp4[1].lstrip(':')
+		temp6 = temp5.lstrip()
+		temp7 = temp6.split()
+		temp7.pop(2)
+
+		protocol = temp7[0]
+		sourceIp = temp7[1]
+		destinationIp = temp7[2]
+
+		# Data structure to be returned
+		params[0],params[1],params[2],params[3],params[4],params[5],params[6], params[7] = incidentTime, step, classification, priority, protocol, sourceIp, destinationIp, isIds
+		print params
+		return params
+
+def decideElement(attack_name):
+	attack_dict = {"Attempted Administrator Privilege Gain": '',
+						"Attempted User Privilege Gain": '',
+						"SCORE! Get the lotion!": '',
+						"Potential Corporate Privacy Violation": '',
+						"Executable code was detected": '',
+						"Successful Administrator Priviledge Gain": '',
+						"Successful User Priviledge Gain": '',
+						"A Network Trojan was Detected": 5,
+						"Unsuccessful User Privilege Gain": '',
+						"Web Application Attack": '',
+						"Attempted Denial of Service": '',
+						"Attempted Information Leak": '',
+						"Potentially Bad Traffic": '',
+						"Attempt to login by a default username and password": '',
+						"Detection of a Denial of Service Attack": '',
+						"Misc Attack": '',
+						"Detection of a non-standard protocol or event": '',
+						"Decode of an RPC query": '',
+						"Denial of Service": '',
+						"Large Scale Information Leak": '',
+						"Information Leak": '',
+						"A suspicious filename was detected": '',
+						"An attempted login using a suspicious user-name was detected": '',
+						"A system call was detected": '',
+						"A client was using an unusual port": '',
+						"Access to a potentially vulnerable web application": '',
+						"Generic ICMP event": '',
+						"Misc activity": '',
+						"Detection of a Network Scan": '',
+						"Not Suspicious Traffic": '',
+						"Generic Protocol Command Decode": '',
+						"A suspicious string was detected": '',
+						"Unknown Traffic= -": '',
+						"A TCP connection was detected= -": '',
+	}
+	attack_name = 'A Network Trojan was Detected'
+	return attack_dict[attack_name]
+
+
+
+line = '<38>snort: [1:100852:1] UPD FLOOD. [Classification: A Network Trojan was detected] [Priority: 2]: {UDP} 172.16.20.128:15874 -> 10.0.0.100:111'
+data = formatLine(line,5)
+asd = decideElement(data[2])
+print asd
+
+"""
+con = mdb.connect('localhost', 'root', 'root')
+cursor = con.cursor()
+
+def getFromTable(dbName, tableName, info, query):
+		sqlUseDB = 'USE %s ;' % dbName
+		cursor.execute(sqlUseDB)
+
+		sqlSearchData = 'SELECT %s FROM %s WHERE %s' % (info, tableName, query)
+
+		cursor.execute(sqlUseDB)
+		cursor.execute(sqlSearchData)
+		row = str(cursor.fetchone())
+		temp =  row.strip("'(,)'")
+		return temp
+
+asd = getFromTable('prueba1','web_server','rating','id="h11"')
+print asd
 
 alert_num_dict = { 'web_server': 0,
 						'database_server': 0,
@@ -54,66 +163,20 @@ def calculateParams(params, affected_element, affected_element_relevance, attack
 	data[0], data[1], data[2], data[3], data[4], data[5] = AK, CK0, BK, RS0, priority_IDS, IDS_name
 	print data
 	return data
-	"""
-	data[i] = AK, CK0, BK, RS0, priority_IDS, IDS_name
-	"""
-
-	"""
-	#computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
-	#computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "snort")
-
-	computeRiskState(4,12.0, 0.6, 6.0, 0.7, 3, "snort")
-
-	computeRiskState(4,15.0, 0.6, 10.0, 0.8, 3, "snort")
-
-	computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "snort")
-	"""
+	
+	
 
 
-calculateParams(3, 'web_server', 5, 4)
-calculateParams(3, 'web_server', 5, 4)
 
-calculateParams(3, 'web_server', 5, 4)
+#calculateParams(3, 'web_server', 5, 4)
+#calculateParams(3, 'web_server', 5, 4)
+
+#calculateParams(3, 'web_server', 5, 4)
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
 
 gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
 
@@ -278,7 +341,7 @@ def computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name):
 
 
 def calculateMk(mu, PIDS0):
-	mk = [[0]*2 for i in range(5)]
+	mk = [[0]*2 for i in range(5A Network Trojan was Detected)]
 	w = [0,0.1,0.2,0.3,0.4]
 
 	for i in range(5):

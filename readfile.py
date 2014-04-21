@@ -44,12 +44,16 @@ def formatLine(line, incidentTime):
 
 		# Classification
 		temp21 = temp2[1].rstrip()
-		classification = temp21.rstrip(']')
-
+		temp22 = temp21.rstrip(']')
+		temp23 = temp22.split(None,1)
+		classification = temp23[1].lower()
+		
 		# Priority
 		temp3 = temp2[2]
 		temp4 = temp3.split(']')
-		priority = temp4[0].strip()
+		temp41 = temp4[0].strip()
+		temp42 = temp41.split(None)
+		priority = temp42[1]
 
 		# Protocol & ip directions
 		temp5 = temp4[1].lstrip(':')

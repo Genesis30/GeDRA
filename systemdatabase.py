@@ -126,6 +126,8 @@ class systemDatabase():
 
 		cursor.execute(sqlUseDB)
 		cursor.execute(sqlSearchData)
+		row = str(cursor.fetchone())
+		return row
 
 	#############################
 	#	Function "closeDatabase"

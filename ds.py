@@ -153,7 +153,7 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 
 
 	# phi = 3 ; PR0 = 4 - priority_IDS
-	PR0 = 4.0 - priority_IDS
+	PR0 = 4.0 - float(priority_IDS)
 	phi = 3.0
 
 	if PR0 <= phi:
@@ -187,15 +187,15 @@ alert_num_dict = { 'web_server': 0,
 #############################
 def calculateParams(params, affected_element, affected_element_relevance, attack_rating):
 	IDS_name = 'snort'
-	#step, classification, priority_IDS, protocol, sourceIp, destinationIp = params[1],params[2],params[3],params[4],params[5],params[6]
-	priority_IDS = params
+	step, classification, priority_IDS, protocol, sourceIp, destinationIp = params[1],params[2],params[3],params[4],params[5],params[6]
+	#priority_IDS = params
 
 	alert_num_dict[affected_element] = alert_num_dict[affected_element]+1
 
 	# AK : alert amount of an alert thread (not only attack strength but also attack confidence).
 	# Calculate AK
 	alert_number = alert_num_dict[affected_element]
-	AK = alert_number * 3.0 + affected_element_relevance + attack_rating
+	AK = alert_number * 3.0 + float(affected_element_relevance) + float(attack_rating)
 	
 	# CK0 : updated alert confidence [0,1] ; probability that an abnormal activity is a true attack. 
 	# Calculate CK0
@@ -206,7 +206,7 @@ def calculateParams(params, affected_element, affected_element_relevance, attack
 	
 	# BK : attack confident situation & severity of the corresponding intrusion.
 	# Calculate BK
-	BK = alert_number*2 + affected_element_relevance
+	BK = alert_number*2 + float(affected_element_relevance)
 	
 	# RS0 : likelihood of a sucessful intrusion. Updated alert in an alert thread. [0,1]
 	# Calculate RS0
@@ -230,6 +230,8 @@ def calculateParams(params, affected_element, affected_element_relevance, attack
 	computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "snort")
 	"""
 
+
+"""
 params = calculateParams(3, 'web_server', 5, 4)
 ads = calculateRisk(params)
 print ads
@@ -239,3 +241,4 @@ params = calculateParams(3, 'web_server', 5, 4)
 
 ads = calculateRisk(params)
 print ads
+"""
