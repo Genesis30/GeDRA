@@ -65,9 +65,9 @@ def checkSystem():
 def evaluateIncident(params):
 	attack_name = params[2]
 	affected_element_ip = params[6]
-	affected_element = decideAffectedElement(attack_name, affected_element_ip)
+	affected_element_info = decideAffectedElement(attack_name, affected_element_ip)
 
-	data = ds.calculateParams(params,affected_element)
+	data = ds.calculateParams(params,affected_element_info[0],affected_element_info[1],affected_element_info[2])
 	risk = ds.calculateRisk(data)
 	"""
 	data[i] = AK, CK0, BK, RS0, priority_IDS, IDS_name
@@ -125,5 +125,6 @@ def decideAffectedElement(attack_name, affected_element_ip):
 	#
 	#####	
 
-	info = affected_element + ' ' + affected_element_relevance
+	info = ['' for i in range(3)]
+	info[0], info[1], info[2] = affected_element , affected_element_relevance, attack_dict[affected_element]
 	return info

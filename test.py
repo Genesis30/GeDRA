@@ -3,6 +3,117 @@
 import os, sys
 
 
+alert_num_dict = { 'web_server': 0,
+						'database_server': 0,
+						'voip_server': 0,
+						'router': 0,
+						'switch': 0,
+						'computer': 0,
+						'firewall': 0,
+						'printer': 0,
+	}
+#############################
+#	Function "calculateParams"
+#		Given some information about the attack, computes it and
+#		decides the factors to compute the risk index.
+#############################
+def calculateParams(params, affected_element, affected_element_relevance, attack_rating):
+	IDS_name = 'snort'
+	priority_IDS = params
+	
+	
+	print alert_num_dict
+
+	alert_num_dict[affected_element] = alert_num_dict[affected_element]+1
+
+	print alert_num_dict
+	# AK : alert amount of an alert thread (not only attack strength but also attack confidence).
+	# Calculate AK
+	alert_number = alert_num_dict[affected_element]
+	AK = alert_number * 3.0 + affected_element_relevance + attack_rating
+	
+	# CK0 : updated alert confidence [0,1] ; probability that an abnormal activity is a true attack. 
+	# Calculate CK0
+	if alert_number >=2:
+		CK0 = 0.7
+	else:
+		CK0 = 0.5
+	
+	# BK : attack confident situation & severity of the corresponding intrusion.
+	# Calculate BK
+	BK = alert_number*2 + affected_element_relevance
+	
+	# RS0 : likelihood of a sucessful intrusion. Updated alert in an alert thread. [0,1]
+	# Calculate RS0
+	if alert_number <=3:
+		RS0 = CK0 + alert_number/10.0
+	else:
+		RS0 = 1.0
+
+	data = [0.0 for i in range(6)]
+	data[0], data[1], data[2], data[3], data[4], data[5] = AK, CK0, BK, RS0, priority_IDS, IDS_name
+	print data
+	return data
+	"""
+	data[i] = AK, CK0, BK, RS0, priority_IDS, IDS_name
+	"""
+
+	"""
+	#computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
+	#computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "snort")
+
+	computeRiskState(4,12.0, 0.6, 6.0, 0.7, 3, "snort")
+
+	computeRiskState(4,15.0, 0.6, 10.0, 0.8, 3, "snort")
+
+	computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "snort")
+	"""
+
+
+calculateParams(3, 'web_server', 5, 4)
+calculateParams(3, 'web_server', 5, 4)
+
+calculateParams(3, 'web_server', 5, 4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
 
 gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
 
@@ -26,7 +137,7 @@ print asd
 
 
 
-"""
+
 import MySQLdb as mdb
 con = mdb.connect('localhost', 'root', 'root')
 cursor = con.cursor()
