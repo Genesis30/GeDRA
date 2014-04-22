@@ -169,7 +169,9 @@ def calculateMu(AK, CK0, BK, RS0, priority_IDS):
 
 	return mu
 
-
+#############################
+#	Dictionary used to store information related to the system.
+#############################
 alert_num_dict = { 'web_server': 0,
 						'database_server': 0,
 						'voip_server': 0,

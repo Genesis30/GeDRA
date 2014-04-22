@@ -6,19 +6,19 @@ import xmlread as xread
 import systemdatabase as systemdb
 import readincidents as read
 
-
-# ---- Functions ----
 #############################
 #	Function "validateFile"
 #		Checks if there is a provided file, and asks for it otherwise. 
 #		"model_file" stores the path value.
 #############################
 def initialCheck():
-	# If no file is provided, ask for it
+	# Basic usage, working daemonized
 	if len(sys.argv) == 1:
+		print 'GeDRA started running.'
+		print 'If you want to stop the execution, please use "Ctrl+C"'
 		read.background()
 
-	# If a file is provided, check if it is valid
+	# Check wich option is provided
 	elif len(sys.argv) >= 2:
 		option = sys.argv[1]
 
@@ -42,17 +42,23 @@ def initialCheck():
 		if option == '-h' or option == '--help':
 			usage()
 			sys.exit(0)
+		else:
+			print 'The option provided is not supported.'
+			usage()
+			sys.exit(0)
 
+#############################
+#	Function "usage"
+#		Help page
+#############################
 def usage():
     print "\nUSAGE: %s [options]" % sys.argv[0]
     print "Without options      	  	run the module in background.\n"
     print "OPTIONS:"
-    print "-c --create 'xml.file'  	build a new system defined in the provided file."
+    print "-c --create 'file.xml'  	build a new system defined in the provided file."
     print "-a --add 'System'	   	add elements to previously created system."
-    print "-s --system			snapshot of the global state of the system."
     print "-h --help           		display this information."
     print
 
 # ---- Main ----
-
 initialCheck()

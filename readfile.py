@@ -39,7 +39,7 @@ def formatLine(line, incidentTime):
 		# Split the desired info
 		temp2 = temp1.split('[')
 
-		# Attack step?
+		# Attack step
 		step = temp2[0].strip()
 
 		# Classification
@@ -55,7 +55,7 @@ def formatLine(line, incidentTime):
 		temp42 = temp41.split(None)
 		priority = temp42[1]
 
-		# Protocol & ip directions
+		# Protocol & IP directions
 		temp5 = temp4[1].lstrip(':')
 		temp6 = temp5.lstrip()
 		temp7 = temp6.split()

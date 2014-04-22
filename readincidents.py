@@ -35,13 +35,11 @@ def background():
 	
 	try:
 		while (True):
+			# Sleep 1 second
 			time.sleep(1)
 	except KeyboardInterrupt:
 		observer.stop()
 	observer.join()
-
-#############################
-
 
 #############################
 #	Function "checkSystem"
@@ -116,7 +114,7 @@ def decideAffectedElement(attack_name, affected_element_ip):
 
 	affected_element = rf.parseSystemFile(affected_element_ip)
 	#####
-	#
+	# Query the database of the system
 	db = systemdb.systemDatabase()
 	temp = db.getFromTable('prueba1',affected_element,'rating','specifications="'+affected_element_ip+'"')
 	affected_element_relevance = temp.strip("'(,)'")
@@ -124,6 +122,5 @@ def decideAffectedElement(attack_name, affected_element_ip):
 	#####	
 
 	info = ['' for i in range(3)]
-	
 	info[0], info[1], info[2] = affected_element , affected_element_relevance, attack_dict[attack_name]
 	return info

@@ -8,12 +8,13 @@ import MySQLdb as mdb
 con = mdb.connect('localhost', 'root', 'root')
 cursor = con.cursor()
 
+
+# Database class
 class systemDatabase():
 	
 	#############################
-	#	Function "validateFile"
-	#		Checks if there is a provided file, and asks for it otherwise. 
-	#		"model_file" stores the path value.
+	#	Function "createDB"
+	#		Checks if the database already exists. If it doesn't, creates it.
 	#############################
 	def createDB(self, dbName):
 		sqlCheckDB = 'SHOW DATABASES LIKE "'+dbName+'";'
@@ -28,9 +29,8 @@ class systemDatabase():
 			print 'Database "%s" already exists. Keep going.' % dbName
 		
 	#############################
-	#	Function "validateFile"
-	#		Checks if there is a provided file, and asks for it otherwise. 
-	#		"model_file" stores the path value.
+	#	Function "createPartTable"
+	#		Create table into the database. Two different tables, HW & SW
 	#############################
 	def createPartTable(self, dbName, tableName):
 		sqlUseDB = 'USE ' + dbName + ';' 
@@ -48,9 +48,8 @@ class systemDatabase():
 			print 'Table "%s" already exists.' % tableName
 
 	#############################
-	#	Function "validateFile"
-	#		Checks if there is a provided file, and asks for it otherwise. 
-	#		"model_file" stores the path value.
+	#	Function "createElementTable"
+	#		Create a table for each element of the system.
 	#############################
 	def createElementTable(self, dbName, tableName, part_name):
 		sqlUseDB = 'USE ' + dbName + ';' 
@@ -72,9 +71,8 @@ class systemDatabase():
 			print 'Table "%s" already exists.' % tableName
 
 	#############################
-	#	Function "validateFile"
-	#		Checks if there is a provided file, and asks for it otherwise. 
-	#		"model_file" stores the path value.
+	#	Function "addToTable"
+	#		Adds data to the desired table.
 	#############################
 	def addToTable(self, dbName, tableName, data, ident, part_name):
 
@@ -113,6 +111,7 @@ class systemDatabase():
 
 		cursor.execute(sqlUseDB)
 		cursor.execute(sqlInsertIntoTable)
+		print 'Correctly inserted data.'
 
 	#############################
 	#	Function "getFromTable"
