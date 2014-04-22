@@ -60,5 +60,26 @@ def usage():
     print "-h --help           		display this information."
     print
 
+#############################
+#	Function "setup"
+#		Initializes some required files
+#############################
+def setup():
+	# Check if directory & report file exists. Otherwise, create them.
+	user = os.getlogin()
+	directoryExists = os.path.exists('/home/'+ user +'/gedra')
+	if directoryExists == 1:
+		fileExists = os.path.exists('/home/'+ user +'/gedra/report')
+		if fileExists == 1:
+			pass
+		else:
+			os.system('touch /home/'+ user +'/gedra/report')
+		print 'Report file at "/home/'+user+'/gedra/*"'
+	else:
+		print 'Creating report directory & file. Locate at "/home/'+user+'/gedra/*"'
+		os.mkdir('/home/'+ user +'/gedra')
+		os.system('touch /home/'+ user +'/gedra/report')
+
 # ---- Main ----
+setup()
 initialCheck()

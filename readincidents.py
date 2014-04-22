@@ -67,6 +67,7 @@ def evaluateIncident(params):
 	data = ds.calculateParams(params,affected_element_info[0],affected_element_info[1],affected_element_info[2])
 	risk = ds.calculateRisk(data)
 	print 'New risk: %s  on  "%s" with IP direction "%s"' % (risk, affected_element_info[0], affected_element_ip)
+	report(risk, affected_element_info[0], affected_element_ip, params[0])
 
 #############################
 #	Function "decideAffectedElement"
@@ -124,3 +125,14 @@ def decideAffectedElement(attack_name, affected_element_ip):
 	info = ['' for i in range(3)]
 	info[0], info[1], info[2] = affected_element , affected_element_relevance, attack_dict[attack_name]
 	return info
+
+#############################
+#	Function "report"
+#		Write information in the report file.
+#############################
+def report(risk, affected_element, affected_element_ip, incidentTime):
+	user = os.getlogin()
+	f =  open('/home/'+ user +'/gedra/report','a')
+	data = 	'\nNew risk: %s  on  "%s" with IP direction "%s"\nDetected @ %s\n' % (risk, affected_element, affected_element_ip, incidentTime)
+	f.write(data)
+	f.close()
