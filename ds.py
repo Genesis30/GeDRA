@@ -35,23 +35,23 @@ def computeRiskDistribution(priority, riskIndex):
 	if priority <= 3:
 		if riskIndex <= 0.5:
 			print 'Low risk: %s' % riskIndex
-			return 0.3
+			return riskIndex#0.3
 		elif riskIndex <=0.8:
 			print 'Medium risk: %s' % riskIndex
-			return 0.6
+			return riskIndex#0.6
 		else:
 			print 'High risk: %s' % riskIndex
-			return 1.0
+			return riskIndex#1.0
 	else:
 		if riskIndex <= 0.4:
 			print 'Low risk: %s' % riskIndex
-			return 0.3
+			return riskIndex#0.3
 		elif riskIndex <=0.7:
 			print 'Medium risk: %s' % riskIndex
-			return 0.6
+			return riskIndex#0.6
 		else:
 			print 'High risk: %s' % riskIndex
-			return 1.0
+			return riskIndex#1.0
 
 #############################
 #	Function "computeRiskIndex"

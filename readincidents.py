@@ -10,8 +10,8 @@ from watchdog.events import FileSystemEventHandler
 #############################
 # Monitoring the syslog directory & file
 #############################
-directoryPath = '/home/genesis/Desktop/'
-syslogPath = '/home/genesis/Desktop/asd'
+directoryPath = '/home/carlos/Desktop/'
+syslogPath = '/home/carlos/Desktop/asd'
 
 #############################
 #	Class "MyHandler"
@@ -38,6 +38,7 @@ def background():
 			# Sleep 1 second
 			time.sleep(1)
 	except KeyboardInterrupt:
+		print "Stopping GeDRA. This shouldn't take long."
 		observer.stop()
 	observer.join()
 
@@ -64,8 +65,11 @@ def evaluateIncident(params):
 	attack_name = params[2]
 	affected_element_ip = params[6]
 	affected_element_info = decideAffectedElement(attack_name, affected_element_ip)
+
 	data = ds.calculateParams(params,affected_element_info[0],affected_element_info[1],affected_element_info[2])
+	
 	risk = ds.calculateRisk(data)
+	
 	print 'New risk: %s  on  "%s" with IP direction "%s"' % (risk, affected_element_info[0], affected_element_ip)
 	report(risk, affected_element_info[0], affected_element_ip, params[0])
 
@@ -76,40 +80,40 @@ def evaluateIncident(params):
 #############################
 def decideAffectedElement(attack_name, affected_element_ip):
 
-	attack_dict = { "attempted administrator privilege gain": '',
-					"attempted user privilege gain": '',
-					"score! get the lotion!": '',
-					"potential corporate privacy violation": '',
-					"executable code was detected": '',
-					"successful administrator priviledge gain": '',
-					"successful user priviledge gain": '',
+	attack_dict = { "attempted administrator privilege gain": ,
+					"attempted user privilege gain": ,
+					"score! get the lotion!": ,
+					"potential corporate privacy violation": ,
+					"executable code was detected": ,
+					"successful administrator priviledge gain": ,
+					"successful user priviledge gain": ,
 					"a network trojan was detected": 5,
-					"unsuccessful user privilege gain": '',
-					"web application attack": '',
-					"attempted denial of service": '',
-					"attempted information leak": '',
-					"potentially bad traffic": '',
-					"attempt to login by a default username and password": '',
-					"detection of a denial of service attack": '',
-					"misc attack": '',
-					"detection of a non-standard protocol or event": '',
-					"decode of an rpc query": '',
-					"denial of service": '',
-					"large scale information leak": '',
-					"information leak": '',
-					"a suspicious filename was detected": '',
-					"an attempted login using a suspicious user-name was detected": '',
-					"a system call was detected": '',
-					"a client was using an unusual port": '',
-					"access to a potentially vulnerable web application": '',
-					"generic icmp event": '',
-					"misc activity": '',
-					"detection of a network scan": '',
-					"not suspicious traffic": '',
-					"generic protocol command decode": '',
-					"a suspicious string was detected": '',
-					"unknown traffic= -": '',
-					"a tcp connection was detected= -": '',
+					"unsuccessful user privilege gain": ,
+					"web application attack": ,
+					"attempted denial of service": ,
+					"attempted information leak": ,
+					"potentially bad traffic": ,
+					"attempt to login by a default username and password": ,
+					"detection of a denial of service attack": ,
+					"misc attack": ,
+					"detection of a non-standard protocol or event": ,
+					"decode of an rpc query": ,
+					"denial of service": ,
+					"large scale information leak": ,
+					"information leak": ,
+					"a suspicious filename was detected": ,
+					"an attempted login using a suspicious user-name was detected": ,
+					"a system call was detected": ,
+					"a client was using an unusual port": ,
+					"access to a potentially vulnerable web application": ,
+					"generic icmp event": ,
+					"misc activity": ,
+					"detection of a network scan": ,
+					"not suspicious traffic": ,
+					"generic protocol command decode": ,
+					"a suspicious string was detected": ,
+					"unknown traffic= -": ,
+					"a tcp connection was detected= -": ,
 	}
 	
 

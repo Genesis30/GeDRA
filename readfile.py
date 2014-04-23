@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 #logPath = '/var/log/syslog'
-syslogPath = '/home/genesis/Desktop/asd'
-gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
+syslogPath = '/home/carlos/Desktop/asd'
+gedraPath = '/home/carlos/Desktop/pfc/GeDRA/model.xml'
 
 #############################
 #	Function "parseInfo"

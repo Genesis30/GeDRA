@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <?xml-stylesheet type="text/xsl" href="simple.xsl" ?>  -->
 <system name="prueba1">
+    
     <hardware>
 
         <web_server identifier="h1">

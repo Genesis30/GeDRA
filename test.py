@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import os, sys
+
+"""
 import MySQLdb as mdb
 
 
@@ -93,7 +95,7 @@ data = formatLine(line,5)
 asd = decideElement(data[2])
 print asd
 
-"""
+
 con = mdb.connect('localhost', 'root', 'root')
 cursor = con.cursor()
 

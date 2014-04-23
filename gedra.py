@@ -34,12 +34,12 @@ def initialCheck():
 				model_file = str(raw_input("Enter the name of the xml file descriptor: "))
 			xread.readFile(model_file)
 
-		if option == '-a' or option == '--add':
+		elif option == '-a' or option == '--add':
 			# Necesario aqui?
 			systemdb.addToTable()
 			pass
 
-		if option == '-h' or option == '--help':
+		elif option == '-h' or option == '--help':
 			usage()
 			sys.exit(0)
 		else:
@@ -74,9 +74,9 @@ def setup():
 			pass
 		else:
 			os.system('touch /home/'+ user +'/gedra/report')
-		print 'Report file at "/home/'+user+'/gedra/*"'
+		print 'Report file at "/home/'+user+'/gedra/*"\n'
 	else:
-		print 'Creating report directory & file. Locate at "/home/'+user+'/gedra/*"'
+		print 'Creating report directory & file. Locate at "/home/'+user+'/gedra/*"\n'
 		os.mkdir('/home/'+ user +'/gedra')
 		os.system('touch /home/'+ user +'/gedra/report')
 
