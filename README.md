@@ -1,4 +1,4 @@
-#GeDRA - GenesisDynamicRiskAssesment
+#GeDRA - Genesis DynamicRiskAssesment
 
 ###Usage
    	
