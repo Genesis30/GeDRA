@@ -38,7 +38,7 @@ def background():
 			# Sleep 1 second
 			time.sleep(1)
 	except KeyboardInterrupt:
-		print "Stopping GeDRA. This shouldn't take long."
+		print "\nStopping GeDRA. This shouldn't take long."
 		observer.stop()
 	observer.join()
 
@@ -82,7 +82,7 @@ def decideAffectedElement(attack_name, affected_element_ip):
 
 	attack_dict = { "attempted administrator privilege gain": 4,
 					"attempted user privilege gain": 4,
-					"score! get the lotion!": ,
+					"score! get the lotion!": 4,
 					"potential corporate privacy violation": 4,
 					"executable code was detected": 4,
 					"successful administrator priviledge gain": 4,

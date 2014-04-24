@@ -42,6 +42,9 @@ def initialCheck():
 		elif option == '-h' or option == '--help':
 			usage()
 			sys.exit(0)
+
+		
+			
 		else:
 			print 'The option provided is not supported.'
 			usage()

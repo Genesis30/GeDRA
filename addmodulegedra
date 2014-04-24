@@ -1,0 +1,17 @@
+#!/bin/sh
+
+ARGS=4         # Script requires 3 arguments.
+E_BADARGS=85   # Wrong number of arguments passed to script.
+
+if [ $# -ne "$ARGS" ]
+then
+  echo "Usage: `basename $0` -short_option --long_option function_to_be_called module_name"
+  exit $E_BADARGS
+fi
+
+SHORT_OPT="$1"
+LONG_OPT="$2"
+FUNCTION="$3"
+MODULE_NAME="$4"
+
+sed -i -e "45 a\		elif option == '$SHORT_OPT' or option == '$LONG_OPT':\n			$FUNCTION()\n" gedra
