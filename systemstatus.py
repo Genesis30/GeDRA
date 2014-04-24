@@ -12,7 +12,7 @@ syslogPath = '/home/carlos/Desktop/asd'
 
 #############################
 #	Function "init"
-#		
+#		Calculates base status of risk of the system
 #		
 #############################
 def init():
@@ -31,7 +31,9 @@ def showStatus():
 #		Provided an attack name, it compares with a defined dictionary and returns
 #		the affected parts of the system.
 #############################
-def updateElement(element_name, affected_element_ip, risk):
+def updateElement(element_name, affected_element_id, risk):
 
 	db = systemdb.systemDatabase()
-	temp = db.addToTable('prueba1',affected_element,'risk','specifications="'+affected_element_ip+'"')
+	temp = db.addToTable('prueba1',affected_element, affected_element_id,'risk="'+risk+'"')
+
+	# dbName, tableName, data, ident, part_name

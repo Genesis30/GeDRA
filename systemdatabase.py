@@ -61,7 +61,7 @@ class systemDatabase():
 
 		if row == 'None':
 			if part_name == 'hardware':
-				sqlCreateTable = 'CREATE TABLE ' + tableName + '(id varchar(10) PRIMARY KEY, firmware varchar(20), specifications varchar(20), specific_software varchar(20),rating varchar(20),comments varchar(20));'
+				sqlCreateTable = 'CREATE TABLE ' + tableName + '(id varchar(10) PRIMARY KEY, risk varchar(20), ip varchar(20), specific_software varchar(20),rating varchar(20),comments varchar(20));'
 			else:
 				sqlCreateTable = 'CREATE TABLE ' + tableName + '(id varchar(10) PRIMARY KEY, name varchar(20), version varchar(20), auto_update varchar(20));'
 			

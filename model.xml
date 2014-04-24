@@ -6,8 +6,8 @@
 
         <web_server identifier="h1">
             <instance name="h11">
-                <firmware></firmware>
-                <specifications>10.0.0.100:111</specifications>
+                <risk>0.0</risk>
+                <ip>10.0.0.100:111</ip>
                 <specific_software></specific_software>
                 <rating>5</rating>
                 <comments></comments>
@@ -16,8 +16,8 @@
         
         <database_server identifier="h2">
             <instance name="h21">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
@@ -26,8 +26,8 @@
         
         <voip_server identifier="h3">
             <instance name="h31">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
@@ -36,8 +36,8 @@
         
         <router identifier="h4">
             <instance name="h41">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
@@ -46,9 +46,9 @@
         
         <switch identifier="h5">
             <instance name="h51">
-                <firmware></firmware>
-                <specifications></specifications>
-               <specific_software></specific_software>
+                <risk>0.0</risk>
+                <ip></ip>
+                <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
             </instance>
@@ -56,8 +56,8 @@
         
         <firewall identifier="h6">
             <instance name="h61">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
@@ -66,8 +66,8 @@
         
         <computer identifier="h7">
             <instance name="h71">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
@@ -76,8 +76,8 @@
         
         <printer identifier="h8">
             <instance name="h81">
-                <firmware></firmware>
-                <specifications></specifications>
+                <risk>0.0</risk>
+                <ip></ip>
                 <specific_software></specific_software>
                 <rating></rating>
                 <comments></comments>
