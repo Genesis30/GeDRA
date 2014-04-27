@@ -2,6 +2,93 @@
 
 import os, sys
 
+def updateElement(element_name, affected_element_id, risk):
+
+	dbName = 'prueba1'
+	sqlUpdateTable = ' UPDATE ' + element_name + ' SET risk="'+str(risk)+'" WHERE id="'+affected_element_id+'";'
+	sqlUseDB = 'USE ' + dbName + ';'
+
+	print sqlUpdateTable
+
+
+
+updateElement('web_server', 'h1', 0.8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+import ds
+gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
+
+def getElements():
+	with open(gedraPath, 'r') as model:
+		temp = model.readlines()
+		i = 0
+		elements = []
+		
+		for line in temp:
+			if '<instance' in line:
+				data_name = temp[i-1]
+				data_id = temp[i]
+				data_rating = temp[i+4]
+
+				# Element Name
+				temp_name = data_name.split(None)
+				temp2_name = temp_name[0]
+				element_name = temp2_name.lstrip('<')
+
+				# Element ID
+				temp_id = data_id.split('name=')
+				temp2_id = temp_id[1]
+				element_id = temp2_id.strip('">\n')
+
+				# Element Rating
+				temp_rating = data_rating.split('>')
+				temp2_rating = temp_rating[1]
+				element_rating = temp2_rating.rstrip('</rating')
+
+				# Update elements
+				info = element_name + ':' + element_id + ':' + element_rating
+				elements.append(info)
+
+			elif '<software>' in line:
+				return elements
+			i+=1
+
+
+system_risk_dict = {}
+
+
+def init():
+	elements = getElements()
+	for element in elements:
+		info = element.split(':')
+
+		element_name = info[0]
+		element_id = info[1]
+		element_rating = info[2]
+
+		temp = element_name + '-' + element_id
+		params = [0,0,0,0,0,0,0,0]
+		data = ds.calculateParams(params ,element_name , element_rating, 0)
+		# system_risk_dict['element_name - element_id'] = element_risk
+		system_risk_dict[temp] = ds.calculateRisk(data)
+	print system_risk_dict
+
+init()
+
+"""
+
 """
 import MySQLdb as mdb
 

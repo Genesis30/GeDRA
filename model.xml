@@ -19,7 +19,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </database_server>
@@ -29,7 +29,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </voip_server>
@@ -39,7 +39,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </router>
@@ -49,7 +49,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </switch>
@@ -59,7 +59,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </firewall>
@@ -69,7 +69,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </computer>
@@ -79,7 +79,7 @@
                 <risk>0.0</risk>
                 <ip></ip>
                 <specific_software></specific_software>
-                <rating></rating>
+                <rating>1</rating>
                 <comments></comments>
             </instance>
         </printer>

@@ -4,6 +4,7 @@ import os, sys, time
 import readfile as rf
 import ds
 import systemdatabase as systemdb
+import systemstatus
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -57,6 +58,7 @@ def checkSystem():
 		print 'New incident detected @ %s. Processing.' % time.ctime()
 		evaluateIncident(params)
 		print 'Incident processed @ %s.' % time.ctime()
+
 		print 'Status of the system updated.'
 
 #############################
@@ -75,6 +77,7 @@ def evaluateIncident(params):
 	
 	print 'New risk: %s  on  "%s" with IP direction "%s"' % (risk, affected_element_info[0], affected_element_ip)
 	report(risk, affected_element_info[0], affected_element_ip, params[0])
+	systemstatus.updateElement(affected_element_info[0], affected_element_info[3], risk)
 
 #############################
 #	Function "decideAffectedElement"
@@ -124,12 +127,14 @@ def decideAffectedElement(attack_name, affected_element_ip):
 	# Query the database of the system
 	db = systemdb.systemDatabase()
 	temp = db.getFromTable('prueba1',affected_element,'rating','ip="'+affected_element_ip+'"')
+	temp2 = db.getFromTable('prueba1',affected_element,'id','ip="'+affected_element_ip+'"')
 	affected_element_relevance = temp.strip("'(,)'")
+	affected_element_id = temp2.strip("'(,)'")
 	#
 	#####	
 
-	info = ['' for i in range(3)]
-	info[0], info[1], info[2] = affected_element , affected_element_relevance, attack_dict[attack_name]
+	info = ['' for i in range(4)]
+	info[0], info[1], info[2], info[3] = affected_element , affected_element_relevance, attack_dict[attack_name], affected_element_id
 	return info
 
 #############################

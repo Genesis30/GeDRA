@@ -34,23 +34,23 @@ def computeRiskDistribution(priority, riskIndex):
 
 	if priority <= 3:
 		if riskIndex <= 0.5:
-			print 'Low risk: %s' % riskIndex
+			#print 'Low risk: %s' % riskIndex
 			return riskIndex#0.3
 		elif riskIndex <=0.8:
-			print 'Medium risk: %s' % riskIndex
+			#print 'Medium risk: %s' % riskIndex
 			return riskIndex#0.6
 		else:
-			print 'High risk: %s' % riskIndex
+			#print 'High risk: %s' % riskIndex
 			return riskIndex#1.0
 	else:
 		if riskIndex <= 0.4:
-			print 'Low risk: %s' % riskIndex
+			#print 'Low risk: %s' % riskIndex
 			return riskIndex#0.3
 		elif riskIndex <=0.7:
-			print 'Medium risk: %s' % riskIndex
+			#print 'Medium risk: %s' % riskIndex
 			return riskIndex#0.6
 		else:
-			print 'High risk: %s' % riskIndex
+			#print 'High risk: %s' % riskIndex
 			return riskIndex#1.0
 
 #############################
@@ -220,27 +220,3 @@ def calculateParams(params, affected_element, affected_element_relevance, attack
 	data = [0.0 for i in range(7)]
 	data[0], data[1], data[2], data[3], data[4], data[5], data[6] = affected_element_relevance, AK, CK0, BK, RS0, priority_IDS, IDS_name
 	return data
-
-	"""
-	#computeRiskIndex(AK, CK0, BK, RS0, priority_IDS, IDS_name)
-	#computeRiskIndex(12.0, 0.6, 6.0, 0.7, 3, "snort")
-
-	computeRiskState(4,12.0, 0.6, 6.0, 0.7, 3, "snort")
-
-	computeRiskState(4,15.0, 0.6, 10.0, 0.8, 3, "snort")
-
-	computeRiskState(4,16.0, 0.6, 11.0, 0.9, 3, "snort")
-	"""
-
-
-"""
-params = calculateParams(3, 'web_server', 5, 4)
-ads = calculateRisk(params)
-print ads
-params = calculateParams(3, 'web_server', 5, 4)
-
-params = calculateParams(3, 'web_server', 5, 4)
-
-ads = calculateRisk(params)
-print ads
-"""

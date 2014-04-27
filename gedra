@@ -5,6 +5,7 @@ import os, sys
 import xmlread as xread
 import systemdatabase as systemdb
 import readincidents as read
+import systemstatus
 
 #############################
 #	Function "validateFile"
@@ -16,6 +17,9 @@ def initialCheck():
 	if len(sys.argv) == 1:
 		print 'GeDRA started running.'
 		print 'If you want to stop the execution, please use "Ctrl+C"'
+		print
+		systemstatus.showStatus()
+		print 
 		read.background()
 
 	# Check wich option is provided
@@ -43,7 +47,9 @@ def initialCheck():
 			usage()
 			sys.exit(0)
 
-		
+		elif option == '-s' or option == '--status':
+			systemstatus.showStatus()
+			sys.exit(0)
 			
 		else:
 			print 'The option provided is not supported.'
@@ -85,4 +91,5 @@ def setup():
 
 # ---- Main ----
 setup()
+systemstatus.init()
 initialCheck()

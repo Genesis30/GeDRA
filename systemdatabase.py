@@ -114,6 +114,18 @@ class systemDatabase():
 		print 'Correctly inserted data.'
 
 	#############################
+	#	Function "modifyDatabase"
+	#		Given some data, modify the value
+	#############################
+	def modifyDatabase(self, element_name, affected_element_id, risk):
+		dbName = 'prueba1'
+		sqlUpdateTable = ' UPDATE ' + element_name + ' SET risk="'+str(risk)+'" WHERE id="'+affected_element_id+'";'
+		sqlUseDB = 'USE ' + dbName + ';'
+
+		cursor.execute(sqlUseDB)
+		cursor.execute(sqlUpdateTable)
+
+	#############################
 	#	Function "getFromTable"
 	#		Search the table for the desired "info" given a "query"
 	#############################

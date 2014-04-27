@@ -87,3 +87,43 @@ def parseSystemFile(affected_element_ip):
 		temp2 = temp[0]
 		element = temp2.lstrip('<')
 		return element
+
+
+#############################
+#	Function "getElements"
+#		Open the system file, retrieve the desired info
+#############################
+def getElements():
+	with open(gedraPath, 'r') as model:
+		temp = model.readlines()
+		i = 0
+		elements = []
+		
+		for line in temp:
+			if '<instance' in line:
+				data_name = temp[i-1]
+				data_id = temp[i]
+				data_rating = temp[i+4]
+
+				# Element Name
+				temp_name = data_name.split(None)
+				temp2_name = temp_name[0]
+				element_name = temp2_name.lstrip('<')
+
+				# Element ID
+				temp_id = data_id.split('name=')
+				temp2_id = temp_id[1]
+				element_id = temp2_id.strip('">\n')
+
+				# Element Rating
+				temp_rating = data_rating.split('>')
+				temp2_rating = temp_rating[1]
+				element_rating = temp2_rating.rstrip('</rating')
+
+				# Update elements
+				info = element_name + ':' + element_id + ':' + element_rating
+				elements.append(info)
+
+			elif '<software>' in line:
+				return elements
+			i+=1

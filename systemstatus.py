@@ -2,38 +2,50 @@
 
 import os, sys, time
 import ds
+import readfile as rf
 import systemdatabase as systemdb
 
-#############################
-# Monitoring the syslog directory & file
-#############################
-directoryPath = '/home/carlos/Desktop/'
-syslogPath = '/home/carlos/Desktop/asd'
+#Dict
+system_risk_dict = {}
 
 #############################
 #	Function "init"
-#		Calculates base status of risk of the system
+#		Calculates the initial values of risk
 #		
 #############################
 def init():
-	pass
+	elements = rf.getElements()
+	for element in elements:
+		info = element.split(':')
+
+		element_name = info[0]
+		element_id = info[1]
+		element_rating = info[2]
+
+		temp = element_name + '-' + element_id
+		params = [0,0,0,0,0,0,0,0]
+		data = ds.calculateParams(params ,element_name , element_rating, 0)
+		# system_risk_dict['element_name - element_id'] = element_risk
+		system_risk_dict[temp] = ds.calculateRisk(data)
+	print 'Initialized system risk.'
 
 #############################
-#	Function "evaluateIncident"
+#	Function "showStatus"
 #		
 #		
 #############################
 def showStatus():
-	pass
+	print system_risk_dict
 
 #############################
-#	Function "decideAffectedElement"
+#	Function "updateElement"
 #		Provided an attack name, it compares with a defined dictionary and returns
 #		the affected parts of the system.
 #############################
 def updateElement(element_name, affected_element_id, risk):
+	temp = element_name + '-' + affected_element_id
+	system_risk_dict[temp] = risk
 
 	db = systemdb.systemDatabase()
-	temp = db.addToTable('prueba1',affected_element, affected_element_id,'risk="'+risk+'"')
-
-	# dbName, tableName, data, ident, part_name
+	db.modifyDatabase(element_name, affected_element_id, risk)
+	db.closeDatabase()
