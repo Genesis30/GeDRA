@@ -10,8 +10,11 @@ from watchdog.events import FileSystemEventHandler
 #############################
 # Monitoring the syslog directory & file
 #############################
-directoryPath = '/home/carlos/Desktop/'
-syslogPath = '/home/carlos/Desktop/asd'
+#directoryPath = '/home/carlos/Desktop/'
+#syslogPath = '/home/carlos/Desktop/asd'
+
+directoryPath = '/home/genesis/Desktop/'
+syslogPath = '/home/genesis/Desktop/asd'
 
 #############################
 #	Class "MyHandler"
@@ -120,7 +123,7 @@ def decideAffectedElement(attack_name, affected_element_ip):
 	#####
 	# Query the database of the system
 	db = systemdb.systemDatabase()
-	temp = db.getFromTable('prueba1',affected_element,'rating','specifications="'+affected_element_ip+'"')
+	temp = db.getFromTable('prueba1',affected_element,'rating','ip="'+affected_element_ip+'"')
 	affected_element_relevance = temp.strip("'(,)'")
 	#
 	#####	

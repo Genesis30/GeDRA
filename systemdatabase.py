@@ -5,7 +5,7 @@ import MySQLdb as mdb
 # http://127.0.0.1/phpmyadmin/
 # User: gedra
 # Pass: gedra
-con = mdb.connect('localhost', 'gedra', 'gedra')
+con = mdb.connect('localhost', 'root', 'root')
 cursor = con.cursor()
 
 
