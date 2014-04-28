@@ -7,7 +7,14 @@
 - OPTIONS:
    * **-c --create 'xml.file'**: build a new system defined in the provided file.
    * **-a --add 'System'**: add elements to previously created system.
+   * **-m --modify element_type element_name parameter new_value**: add elements to previously created system.
+   * **-s --status**: display the status of the system.
    * **-h --help**: display this information.
+
+###Contributing
+If you are interested in developing a module for GeDRA, there is a script suited for that task. Develop your module and add it to the system with it:
+   
+   - ./addmodule -short_option --long_option function_to_be_called module_name
 
 ###Contact 
 
