@@ -7,6 +7,8 @@
 - OPTIONS:
    * **-c --create 'xml.file'**: build a new system defined in the provided file.
    * **-a --add 'System'**: add elements to previously created system.
+   * **-m --modify element_type element_name parameter new_value**: add elements to previously created system.
+   * **-s --status**: display the status of the system.
    * **-h --help**: display this information.
 
 ###Contact 
