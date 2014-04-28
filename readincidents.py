@@ -43,7 +43,10 @@ def background():
 			time.sleep(1)
 			# Reset the risk values of the system
 			flag+=1
-			if flag	== 60:
+			if flag == 60:
+				systemstatus.reportStatus()
+				
+			if flag	== 600:
 				flag = 0
 				systemstatus.init()
 	except KeyboardInterrupt:

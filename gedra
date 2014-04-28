@@ -115,15 +115,18 @@ def setup():
 	directoryExists = os.path.exists('/home/'+ user +'/gedra')
 	if directoryExists == 1:
 		fileExists = os.path.exists('/home/'+ user +'/gedra/report')
+		fileExists2 = os.path.exists('/home/'+ user +'/gedra/status')
 		if fileExists == 1:
 			pass
 		else:
 			os.system('touch /home/'+ user +'/gedra/report')
+			os.system('touch /home/'+ user +'/gedra/status')
 		print 'Report file at "/home/'+user+'/gedra/*"\n'
 	else:
 		print 'Creating report directory & file. Locate at "/home/'+user+'/gedra/*"\n'
 		os.mkdir('/home/'+ user +'/gedra')
 		os.system('touch /home/'+ user +'/gedra/report')
+		os.system('touch /home/'+ user +'/gedra/status')
 
 # ---- Main ----
 setup()

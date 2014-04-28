@@ -36,7 +36,7 @@ def init():
 #		
 #############################
 def showStatus():
-	print system_risk_dict
+	os.system('cat /home/carlos/gedra/status')
 
 #############################
 #	Function "updateElement"
@@ -50,3 +50,14 @@ def updateElement(element_name, affected_element_id, risk):
 	db = systemdb.systemDatabase()
 	db.modifyDatabase(element_name, affected_element_id,'risk', risk)
 	db.closeDatabase()
+
+#############################
+#	Function "reportStatus"
+#		Updates the state of the system into de "status" file every 60 seconds
+#############################
+def reportStatus():
+	user = os.getlogin()
+	f =  open('/home/'+ user +'/gedra/status','w')
+	data = 	'\nAutomatic report. Updated every 60 seconds.\n\n%s\n\n' % (system_risk_dict)
+	f.write(data)
+	f.close()
