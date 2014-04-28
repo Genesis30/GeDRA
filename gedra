@@ -7,6 +7,29 @@ import systemdatabase as systemdb
 import readincidents as read
 import systemstatus
 
+#-----------------------------
+# Handling dependecies
+def module_check(module):
+   '''
+   Just for debian-based systems like Kali and Ubuntu
+   '''
+   ri = raw_input('[-] python-%s not installed, would you like to install now? (apt-get install -y python-%s will be run if yes) [y/n]: ' % (module, module))
+   if ri == 'y':
+      os.system('apt-get install -y python-%s' % module)
+   else:
+      exit('[-] Exiting due to missing dependency')
+
+try:
+	import MySQLdb
+except Exception:
+   module_check('MySQLdb')
+
+try:
+	import watchdog
+except Exception:
+   module_check('watchdog')
+#-----------------------------
+
 
 #############################
 #	Function "initialCheck"
