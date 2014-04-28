@@ -11,6 +11,11 @@
    * **-s --status**: display the status of the system.
    * **-h --help**: display this information.
 
+###Contributing
+If you are interested in developing a module for GeDRA, there is a script suited for that task. Develop your module and add it to the system with it:
+   
+   - ./addmodule -short_option --long_option function_to_be_called module_name
+
 ###Contact 
 
 Do not hesitate to [contact me](mailto:carlos@g3nesis.es) if you are interested in something involving this project. 
