@@ -183,6 +183,14 @@ alert_num_dict = { 'web_server': 0,
 }
 
 #############################
+#	Function "restartAlertNumber"
+#		Restarts the number of alerts recorded
+#############################
+def restartAlertNumber():
+	for element in alert_num_dict:
+		alert_num_dict[element] = 0
+
+#############################
 #	Function "calculateParams"
 #		Given some information about the attack, computes it and
 #		decides the factors to compute the risk index.
@@ -201,14 +209,16 @@ def calculateParams(params, affected_element, affected_element_relevance, attack
 	
 	# CK0 : updated alert confidence [0,1] ; probability that an abnormal activity is a true attack. 
 	# Calculate CK0
-	if alert_number >=2:
+	if alert_number == 0:
+		CK0 = 0.3
+	elif alert_number >=2:
 		CK0 = 0.7
 	else:
-		CK0 = 0.5
+		CK0 = 0.4
 	
 	# BK : attack confident situation & severity of the corresponding intrusion.
 	# Calculate BK
-	BK = alert_number*2 + float(affected_element_relevance)
+	BK = alert_number * 3.0 + float(affected_element_relevance)
 	
 	# RS0 : likelihood of a sucessful intrusion. Updated alert in an alert thread. [0,1]
 	# Calculate RS0
