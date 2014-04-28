@@ -11,11 +11,11 @@ from watchdog.events import FileSystemEventHandler
 #############################
 # Monitoring the syslog directory & file
 #############################
-#directoryPath = '/home/carlos/Desktop/'
-#syslogPath = '/home/carlos/Desktop/asd'
+directoryPath = '/home/carlos/Desktop/'
+syslogPath = '/home/carlos/Desktop/asd'
 
-directoryPath = '/home/genesis/Desktop/'
-syslogPath = '/home/genesis/Desktop/asd'
+#directoryPath = '/home/genesis/Desktop/'
+#syslogPath = '/home/genesis/Desktop/asd'
 
 #############################
 #	Class "MyHandler"
@@ -36,11 +36,16 @@ def background():
 	event_handler = MyHandler()
 	observer.schedule(event_handler, directoryPath, recursive=False)
 	observer.start()
-	
+	flag = 0
 	try:
 		while (True):
 			# Sleep 1 second
 			time.sleep(1)
+			# Reset the risk values of the system
+			flag+=1
+			if flag	== 60:
+				flag = 0
+				systemstatus.init()
 	except KeyboardInterrupt:
 		print "\nStopping GeDRA. This shouldn't take long."
 		observer.stop()
@@ -58,7 +63,6 @@ def checkSystem():
 		print 'New incident detected @ %s. Processing.' % time.ctime()
 		evaluateIncident(params)
 		print 'Incident processed @ %s.' % time.ctime()
-
 		print 'Status of the system updated.'
 
 #############################

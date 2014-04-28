@@ -14,4 +14,5 @@ LONG_OPT="$2"
 FUNCTION="$3"
 MODULE_NAME="$4"
 
-sed -i -e "45 a\		elif option == '$SHORT_OPT' or option == '$LONG_OPT':\n			$FUNCTION()\n" gedra
+sed -i -e "8 a\import $MODULE_NAME" gedra
+sed -i -e "55 a\		elif option == '$SHORT_OPT' or option == '$LONG_OPT':\n			$MODULE_NAME.$FUNCTION()\n" gedra

@@ -5,7 +5,8 @@ import MySQLdb as mdb
 # http://127.0.0.1/phpmyadmin/
 # User: gedra
 # Pass: gedra
-con = mdb.connect('localhost', 'root', 'root')
+con = mdb.connect('localhost', 'gedra', 'gedra')
+#con = mdb.connect('localhost', 'root', 'root')
 cursor = con.cursor()
 
 
@@ -117,9 +118,9 @@ class systemDatabase():
 	#	Function "modifyDatabase"
 	#		Given some data, modify the value
 	#############################
-	def modifyDatabase(self, element_name, affected_element_id, risk):
+	def modifyDatabase(self, element_name, affected_element_id, parameter, value):
 		dbName = 'prueba1'
-		sqlUpdateTable = ' UPDATE ' + element_name + ' SET risk="'+str(risk)+'" WHERE id="'+affected_element_id+'";'
+		sqlUpdateTable = ' UPDATE ' + element_name + ' SET '+parameter+'="'+str(value)+'" WHERE id="'+affected_element_id+'";'
 		sqlUseDB = 'USE ' + dbName + ';'
 
 		cursor.execute(sqlUseDB)

@@ -7,10 +7,10 @@ import systemdatabase as systemdb
 import readincidents as read
 import systemstatus
 
+
 #############################
-#	Function "validateFile"
-#		Checks if there is a provided file, and asks for it otherwise. 
-#		"model_file" stores the path value.
+#	Function "initialCheck"
+#		Checks the option provided and runs the desired code
 #############################
 def initialCheck():
 	# Basic usage, working daemonized
@@ -39,9 +39,20 @@ def initialCheck():
 			xread.readFile(model_file)
 
 		elif option == '-a' or option == '--add':
-			# Necesario aqui?
 			systemdb.addToTable()
 			pass
+
+		elif option == '-m' or option == '--modify':
+			if len(sys.argv) < 6:
+				print 'Not enough information provided. Try again.'
+			else:
+				element_name = sys.argv[2]
+				affected_element_id = sys.argv[3]
+				parameter = sys.argv[4]
+				value = sys.argv[5]
+				systemdb.modifyDatabase(element_name, affected_element_id, parameter, value)
+				print 'Value modified.'
+				sys.exit(0)
 
 		elif option == '-h' or option == '--help':
 			usage()
@@ -50,7 +61,7 @@ def initialCheck():
 		elif option == '-s' or option == '--status':
 			systemstatus.showStatus()
 			sys.exit(0)
-			
+
 		else:
 			print 'The option provided is not supported.'
 			usage()
@@ -66,6 +77,8 @@ def usage():
     print "OPTIONS:"
     print "-c --create 'file.xml'  	build a new system defined in the provided file."
     print "-a --add 'System'	   	add elements to previously created system."
+    print "-m --modify element_type element_name parameter new_value\n Add elements to previously created system."
+    print "-s --status 	   		display the status of the system."
     print "-h --help           		display this information."
     print
 

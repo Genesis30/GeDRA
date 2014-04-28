@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 #logPath = '/var/log/syslog'
-#syslogPath = '/home/carlos/Desktop/asd'
-syslogPath = '/home/genesis/Desktop/asd'
-#gedraPath = '/home/carlos/Desktop/pfc/GeDRA/model.xml'
-gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
+syslogPath = '/home/carlos/Desktop/asd'
+#syslogPath = '/home/genesis/Desktop/asd'
+gedraPath = '/home/carlos/Desktop/pfc/GeDRA/model.xml'
+#gedraPath = '/home/genesis/Desktop/GeDRA/model.xml'
 #############################
 #	Function "parseInfo"
 #		Open the syslog file, retrieve the last line and calls

@@ -27,6 +27,7 @@ def init():
 		data = ds.calculateParams(params ,element_name , element_rating, 0)
 		# system_risk_dict['element_name - element_id'] = element_risk
 		system_risk_dict[temp] = ds.calculateRisk(data)
+		updateElement(element_name, element_id, risk)
 	print 'Initialized system risk.'
 
 #############################
@@ -47,5 +48,5 @@ def updateElement(element_name, affected_element_id, risk):
 	system_risk_dict[temp] = risk
 
 	db = systemdb.systemDatabase()
-	db.modifyDatabase(element_name, affected_element_id, risk)
+	db.modifyDatabase(element_name, affected_element_id,'risk', risk)
 	db.closeDatabase()
