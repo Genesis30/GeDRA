@@ -48,7 +48,7 @@ def background():
 				
 			if flag	== 600:
 				flag = 0
-				ds.restartAlertNumber
+				ds.restartAlertNumber()
 				systemstatus.init()
 	except KeyboardInterrupt:
 		print "\nStopping GeDRA. This shouldn't take long."
