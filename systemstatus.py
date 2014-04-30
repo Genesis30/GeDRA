@@ -15,6 +15,8 @@ system_risk_dict = {}
 #############################
 def init():
 	elements = rf.getElements()
+	db = systemdb.systemDatabase()
+
 	for element in elements:
 		info = element.split(':')
 
@@ -27,7 +29,11 @@ def init():
 		data = ds.calculateParams(params ,element_name , element_rating, 0)
 		# system_risk_dict['element_name - element_id'] = element_risk
 		system_risk_dict[temp] = ds.calculateRisk(data)
-		updateElement(element_name, element_id, risk)
+
+		# updating an element
+		db.modifyDatabase(element_name, element_id,'risk', system_risk_dict[temp])
+
+	db.closeDatabase()
 	print 'Initialized system risk.'
 
 #############################
@@ -37,19 +43,6 @@ def init():
 #############################
 def showStatus():
 	os.system('cat /home/carlos/gedra/status')
-
-#############################
-#	Function "updateElement"
-#		Provided an attack name, it compares with a defined dictionary and returns
-#		the affected parts of the system.
-#############################
-def updateElement(element_name, affected_element_id, risk):
-	temp = element_name + '-' + affected_element_id
-	system_risk_dict[temp] = risk
-
-	db = systemdb.systemDatabase()
-	db.modifyDatabase(element_name, affected_element_id,'risk', risk)
-	db.closeDatabase()
 
 #############################
 #	Function "reportStatus"
