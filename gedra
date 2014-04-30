@@ -4,16 +4,22 @@ import os, sys
 #-----------------------------
 # Handling dependecies
 def module_check(module):
-   '''
-   Just for debian-based systems like Kali and Ubuntu
-   '''
-   ri = raw_input('[-] python-%s not installed, would you like to install now? (sudo apt-get install -y python-%s will be run if yes) [y/n]: ' % (module, module))
-   if ri == 'y':
-      return_value = os.system('sudo apt-get install -y python-%s' % module)
+   	'''
+   	Just for debian-based systems like Kali and Ubuntu
+   	'''
+   	ri = raw_input('[-] python-%s not installed, would you like to install now? (sudo apt-get install -y python-%s will be run if yes) [y/n]: ' % (module, module))
+   	if ri == 'y':
+   		if module == 'MySQLdb':
+      		return_value = os.system('apt-get install -y python-%s' % module)
 
-      if return_value != 0:
-      	exit('[-] Exiting due to problem installing dependecy. Try "sudo apt-get update"')
-   else:
+      		if return_value != 0:
+      			exit('[-] Exiting due to problem installing dependecy. Try "sudo apt-get update"')
+      	else:
+      		return_value = os.system('pip install %s' % module)
+
+      		if return_value != 0:
+      			exit('[-] Exiting due to problem installing dependecy. Do you have "pip" installed?')
+   	else:
       exit('[-] Exiting due to missing dependency')
 
 try:
